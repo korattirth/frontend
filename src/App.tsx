@@ -1,18 +1,23 @@
-import './App.css';
-import Navbar from './app/layout/Navbar';
+import "./App.css";
+import Navbar from "./app/layout/Navbar";
 import { Route, Routes } from "react-router-dom";
-import Login from './app/features/account/Login';
-import Ragister from './app/features/account/Ragister';
-
+import Footer from "./app/layout/Footer";
+import theme from "./app/util/theme";
+import { ThemeProvider } from "@mui/material";
+import LogIn from "./app/features/account/Login";
+import Register from "./app/features/account/Register";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path='/login' element ={<Login />} />
-        <Route path='/ragister' element ={<Ragister />} />
-      </Routes>
+      <ThemeProvider theme={theme}>
+        <Navbar />
+        <Routes>
+          <Route path="/sign-in" element={<LogIn />} />
+          <Route path="/sign-up" element={<Register />} />
+        </Routes>
+        <Footer />
+      </ThemeProvider>
     </>
   );
 }

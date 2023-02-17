@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { User } from "../model/User";
+import { LoginForm, LoginUser, User } from "../model/User";
 
 axios.defaults.baseURL = "http://localhost:8000/";
 
@@ -13,8 +13,8 @@ const request = {
 };
 
 const Account = {
-    signUp: (user: User) => request.post<any>("/account/register", user),
-    signIn: (user: User) => request.post<any>("account/login", user),
+    signUp: (user: User) => request.post<any>("/account/sign-up", user),
+    signIn: (user: LoginForm) => request.post<LoginUser>("account/sign-in", user),
 }
 
 const agent = {

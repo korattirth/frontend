@@ -1,69 +1,131 @@
-import react from "react";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import { makeStyles } from "@mui/styles";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import clsx from "clsx";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../store/store";
 
-const Login = () => {
+<style>
+  @import
+  url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@100;400&display=swap');
+</style>;
+
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+    margin: "32px 0px",
+    borderRadius: '10px',
+    borderColor: "#1C343B"
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: 250,
+    margin: "0px 25px",
+  },
+  error: {
+    color: "red",
+    marginTop: 4,
+  },
+  centerContent: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    fontFamily: "Montserrat Alternates",
+    fontSize: "24px",
+    fontWeight: 600,
+    lineHeight: "29px",
+  },
+  divider: {
+    height: "1px",
+    backgroundColor: "#1C343B",
+    width: "100%",
+  },
+});
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: Yup.string().required("Password is required"),
+});
+
+function LogIn() {
+  const classes = useStyles();
+  const { userStore : {signIn}} = useStore();
+
+  const handleSignIn = (values: any) => {
+    signIn(values)
+  };
+
   return (
-    <>
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ height: "84vh" }}
-      >
-        <div className="border loginContainer">
-          <div
-            className="d-flex justify-content-center align-items-center"
-            style={{ margin: "40px 0px 34px 0px", color: "#1C343B" }}
-          >
-            <h3>Login</h3>
-          </div>
-          <div
-            className="d-flex flex-column justify-content-center align-items-center"
-            style={{ marginBottom: "30px" }}
-          >
-            <p className="m-0">Alumni Association of</p>
-            <h3 className="fw-bold">The TS High School</h3>
-          </div>
-          <div className="d-flex justify-content-center align-items-center">
-            <p className="m-0 login_title">Login</p>
-          </div>
-          <div style={{ padding: "0px 30px", margin: "30px 0px" }}>
-            <div style={{ marginBottom: "15px" }}>
-              <label className="form-label m-0">Email</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Email"
-              />
-            </div>
-            <div style={{ marginBottom: "15px" }}>
-              <label className="form-label m-0">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Enter Password"
-              />
-            </div>
-            <div className="d-flex justify-content-center align-items-center">
-              <button className="login_button">Login</button>
-            </div>
-          </div>
-          <div className="d-flex justify-content-center align-items-center">
-            <div
-              style={{
-                height: "1px",
-                width: "524px",
-                backgroundColor: "#1C343B",
-              }}
-            ></div>
-          </div>
-          <div className="text-center" style={{ margin: "20px 0px" }}>
-            <p className="m-0">
-              New user?<Link to={"/ragister"}>ragister</Link>
-            </p>
-          </div>
+    <Container maxWidth="sm">
+      <Box className={clsx(classes.root,'border')}>
+        <div className={clsx(classes.centerContent, "mt-5 mb-4")}>
+          <img src="./The TS High School.png" width="60%" alt="logo" />
         </div>
-      </div>
-    </>
+        <Typography variant="h4" align="center" color='#606060'>
+          Sign in
+        </Typography>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={validationSchema}
+          onSubmit={handleSignIn}
+        >
+          {({ touched, errors, isValid, dirty }) => (
+            <Form className={classes.form}>
+              <Field
+                as={TextField}
+                name="email"
+                label="Email"
+                type="email"
+                variant="outlined"
+                fullWidth
+                error={touched.email && Boolean(errors.email)}
+                helperText={
+                  <ErrorMessage name="email" className={classes.error} />
+                }
+              />
+              <Field
+                as={TextField}
+                name="password"
+                label="Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                className='mt-3'
+                error={touched.password && Boolean(errors.password)}
+                helperText={
+                  <ErrorMessage name="password" className={classes.error} />
+                }
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className="my-4"
+                disabled={!(isValid && dirty)}
+              >
+                Sign in
+              </Button>
+            </Form>
+          )}
+        </Formik>
+        <Divider className={classes.divider } />
+        <Typography textAlign="center" margin="20px 0px">
+          New user?<Link to={"/sign-up"}>ragister</Link>
+        </Typography>
+      </Box>
+    </Container>
   );
-};
+}
 
-export default Login;
+export default observer(LogIn);

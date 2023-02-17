@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@100;400&display=swap');
 
 .loginContainer {
-    width: 584px;
+    /* width: 584px; */
     border-radius: 10px;
     border-color: "#1C343B";
 }

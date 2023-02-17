@@ -8,7 +8,17 @@ export interface User {
   address2: string;
   city: string;
   state: string;
-  zipcode: number;
+  zipcode: number | undefined;
   department: string;
   dob: string;
+}
+
+export interface LoginForm{
+  email: string;
+  password: string;
+}
+
+export interface LoginUser{
+  userId: string;
+  token: string;
 }
