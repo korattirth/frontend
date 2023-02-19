@@ -46,7 +46,7 @@ function Navbar() {
               <DrawerComponents />
             ) : (
                 <>
-                <Button sx={boxSX} component={NavLink} to="/login">
+                <Button sx={boxSX} component={NavLink} to="/">
                   community
                 </Button>
                 {token ? (

@@ -3,13 +3,6 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/FacebookRounded";
 import { makeStyles } from "@mui/styles";
 
-<style>
-  @import
-  url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@100;400&family=Roboto+Slab&display=swap');
-  @import
-  url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@100;400&family=Roboto+Slab&display=swap');
-</style>;
-
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: "#1C343B",
