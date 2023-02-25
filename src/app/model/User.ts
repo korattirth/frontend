@@ -1,4 +1,5 @@
 export interface User {
+  userId: string;
   fName: string;
   lName: string;
   email: string;
@@ -9,8 +10,9 @@ export interface User {
   city: string;
   state: string;
   zipcode: number | undefined;
-  department: string;
   dob: string;
+  role: number;
+  isActive: boolean;
 }
 
 export interface LoginForm{
@@ -21,4 +23,5 @@ export interface LoginForm{
 export interface LoginUser{
   userId: string;
   token: string;
+  user: User;
 }

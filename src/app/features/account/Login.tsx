@@ -1,24 +1,20 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Container, TextField, Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import { makeStyles } from "@mui/styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import LoadingButton from "@mui/lab/LoadingButton";
 import * as Yup from "yup";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../store/store";
 
-<style>
-  @import
-  url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@100;400&display=swap');
-</style>;
-
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     margin: "32px 0px",
-    borderRadius: '10px',
-    borderColor: "#1C343B"
+    borderRadius: "10px",
+    borderColor: "#1C343B",
   },
   form: {
     display: "flex",
@@ -55,32 +51,38 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
-  password: Yup.string().required("Password is required"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(5, "Password must be 5 character at minimum"),
 });
 
 function LogIn() {
   const classes = useStyles();
-  const { userStore : {signIn}} = useStore();
+  const {
+    userStore: { signIn, loading },
+  } = useStore();
 
-  const handleSignIn = (values: any) => {
-    signIn(values)
+  const handleSignIn = (values: any, setErrors: any) => {
+    signIn(values).catch((err) => {
+      setErrors({ error: "Invalid email or password" });
+    });
   };
 
   return (
     <Container maxWidth="sm">
-      <Box className={clsx(classes.root,'border')}>
+      <Box className={clsx(classes.root, "border")}>
         <div className={clsx(classes.centerContent, "mt-5 mb-4")}>
           <img src="./The TS High School.png" width="60%" alt="logo" />
         </div>
-        <Typography variant="h4" align="center" color='#606060'>
+        <Typography variant="h4" align="center" color="#606060">
           Sign in
         </Typography>
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ email: "", password: "", error: "" }}
           validationSchema={validationSchema}
-          onSubmit={handleSignIn}
+          onSubmit={(values, { setErrors }) => handleSignIn(values, setErrors)}
         >
-          {({ touched, errors, isValid, dirty }) => (
+          {({ handleSubmit, touched, errors, isValid, dirty }) => (
             <Form className={classes.form}>
               <Field
                 as={TextField}
@@ -101,13 +103,24 @@ function LogIn() {
                 type="password"
                 variant="outlined"
                 fullWidth
-                className='mt-3'
+                className="mt-3"
                 error={touched.password && Boolean(errors.password)}
                 helperText={
                   <ErrorMessage name="password" className={classes.error} />
                 }
               />
-              <Button
+              <ErrorMessage
+                name="error"
+                render={() => (
+                  <>
+                    <Typography className={classes.error}>
+                      {errors.error}
+                    </Typography>
+                  </>
+                )}
+              />
+              <LoadingButton
+                loading={loading}
                 type="submit"
                 variant="contained"
                 color="primary"
@@ -115,11 +128,11 @@ function LogIn() {
                 disabled={!(isValid && dirty)}
               >
                 Sign in
-              </Button>
+              </LoadingButton>
             </Form>
           )}
         </Formik>
-        <Divider className={classes.divider } />
+        <Divider className={classes.divider} />
         <Typography textAlign="center" margin="20px 0px">
           New user?<Link to={"/sign-up"}>ragister</Link>
         </Typography>

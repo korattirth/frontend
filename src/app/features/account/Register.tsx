@@ -1,8 +1,11 @@
 import {
   Box,
-  Button,
   Container,
+  FormControl,
   Grid,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -11,19 +14,15 @@ import { makeStyles } from "@mui/styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import clsx from "clsx";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { Link } from "react-router-dom";
 import { Theme } from "@mui/system";
-import { User } from "../../model/User";
 import { useStore } from "../../store/store";
 import { ragisterFormValidation, initialValues } from "../../util/helper";
 import { observer } from "mobx-react-lite";
+import ValidationError from "../../layout/ValidationError";
 
-<style>
-  @import
-  url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Montserrat:wght@100;400&display=swap');
-</style>;
-
-const useStyles = makeStyles((theme : Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
     margin: "32px 0px",
@@ -71,14 +70,18 @@ const validationSchema = Yup.object(ragisterFormValidation());
 
 function Register() {
   const classes = useStyles();
-  const { userStore : {signUp} } = useStore();
+  const {
+    userStore: { signUp, loading },
+  } = useStore();
 
-  const handleSignUp = (values: User) => {
-    signUp(values);
+  const handleSignUp = (values: any, setErrors: any) => {
+    signUp(values).catch((errors) => {
+      setErrors({ error: errors });
+    });
   };
 
   return (
-    <Container style={{display : 'flex',justifyContent : 'center'}}>
+    <Container style={{ display: "flex", justifyContent: "center" }}>
       <Box className={clsx(classes.root, "border")}>
         <div className={clsx(classes.centerContent, "mt-5 mb-4")}>
           <img src="./The TS High School.png" width="60%" alt="logo" />
@@ -89,11 +92,11 @@ function Register() {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={handleSignUp}
+          onSubmit={(values, { setErrors }) => handleSignUp(values, setErrors)}
         >
-          {({ touched, errors, isValid, dirty }) => (
+          {({ touched, errors, isValid, dirty, handleChange ,handleBlur,values}) => (
             <Form className={classes.form}>
-              <Grid container spacing={2} sx={{marginBottom : '16px'}}>
+              <Grid container spacing={2} sx={{ marginBottom: "16px" }}>
                 <Grid item sm={6} xs={12}>
                   <Field
                     as={TextField}
@@ -125,7 +128,7 @@ function Register() {
                   />
                 </Grid>
               </Grid>
-              <Grid container spacing={2} sx={{marginBottom : '16px'}}>
+              <Grid container spacing={2} sx={{ marginBottom: "16px" }}>
                 <Grid item xs={12}>
                   <Field
                     as={TextField}
@@ -185,7 +188,7 @@ function Register() {
                     variant="outlined"
                     fullWidth
                     className={classes.input}
-                    error={touched.password && Boolean(errors.homeAddress)}
+                    error={touched.homeAddress && Boolean(errors.homeAddress)}
                     helperText={
                       <ErrorMessage
                         name="homeAddress"
@@ -195,7 +198,7 @@ function Register() {
                   />
                 </Grid>
               </Grid>
-              <Grid container spacing={2} >
+              <Grid container spacing={2}>
                 <Grid item sm={6} xs={12}>
                   <Field
                     as={TextField}
@@ -216,7 +219,7 @@ function Register() {
                     as={TextField}
                     name="zipcode"
                     label="Zipcode"
-                    type="text"
+                    type="number"
                     variant="outlined"
                     fullWidth
                     className={classes.input}
@@ -257,21 +260,32 @@ function Register() {
                   />
                 </Grid>
                 <Grid item sm={6} xs={12}>
-                  <Field
-                    as={TextField}
+                  <FormControl fullWidth error={touched.department && Boolean(errors.department)}>
+                    <InputLabel id="demo-simple-select-label">
+                      Department
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      label="Department"
+                      name="department"
+                      value={values.department}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    >
+                      <MenuItem value="2">Student</MenuItem>
+                      <MenuItem value="1">Creator</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <ErrorMessage
                     name="department"
-                    label="Department"
-                    type="text"
-                    variant="outlined"
-                    fullWidth
-                    className={classes.input}
-                    error={touched.department && Boolean(errors.department)}
-                    helperText={
-                      <ErrorMessage
-                        name="department"
-                        className={classes.error}
-                      />
-                    }
+                    render={() => (
+                      <>
+                        <Typography color='error' fontSize='12px'>
+                          {errors.department}
+                        </Typography>
+                      </>
+                    )}
                   />
                 </Grid>
                 <Grid item sm={6} xs={12}>
@@ -282,6 +296,9 @@ function Register() {
                     type="date"
                     variant="outlined"
                     fullWidth
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
                     className={classes.input}
                     error={touched.dob && Boolean(errors.dob)}
                     helperText={
@@ -290,7 +307,12 @@ function Register() {
                   />
                 </Grid>
               </Grid>
-              <Button
+              <ErrorMessage
+                name="error"
+                render={() => <ValidationError errors={errors.error} />}
+              />
+              <LoadingButton
+                loading={loading}
                 type="submit"
                 variant="contained"
                 color="primary"
@@ -298,17 +320,17 @@ function Register() {
                 disabled={!(isValid && dirty)}
               >
                 Sign Up
-              </Button>
+              </LoadingButton>
             </Form>
           )}
         </Formik>
         <Divider className={classes.divider} />
         <Typography textAlign="center" margin="20px 0px">
-        Have an account?<Link to={"/sign-in"}>Sign-In</Link>
+          Have an account?<Link to={"/sign-in"}>Sign-In</Link>
         </Typography>
       </Box>
     </Container>
   );
 }
 
-export default observer(Register)
+export default observer(Register);

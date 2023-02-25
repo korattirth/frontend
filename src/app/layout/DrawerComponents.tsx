@@ -16,6 +16,7 @@ import { makeStyles } from "@mui/styles";
 
 import { Link } from "react-router-dom";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { useStore } from "../store/store";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -29,15 +30,22 @@ const useStyles = makeStyles(() => ({
   },
   mainList1: {
     backgroundColor: "#629549",
-    color : 'white'
+    color: "white",
   },
   mainList2: {
     backgroundColor: "#1C343B",
-    color : 'white'
+    color: "white",
   },
 }));
 
 function DrawerComponents() {
+  const {
+    commonStore: { token },
+  } = useStore();
+  const {
+    userStore: { logout },
+  } = useStore();
+
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openNavbar1, setOpenNavbar1] = React.useState(true);
@@ -85,20 +93,43 @@ function DrawerComponents() {
                     </ListItemButton>
                   </Link>
                 </ListItem>
-                <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <Link to="/sign-in" className={classes.link}>
-                    <ListItemButton sx={{ textAlign: "center" }}>
-                      <ListItemText>Login</ListItemText>
-                    </ListItemButton>
-                  </Link>
-                </ListItem>
-                <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <Link to="/sign-up" className={classes.link}>
-                    <ListItemButton sx={{ textAlign: "center" }}>
-                      <ListItemText>Register</ListItemText>
-                    </ListItemButton>
-                  </Link>
-                </ListItem>
+                {token ? (
+                  <>
+                    <ListItem
+                      disablePadding
+                      onClick={() => setOpenDrawer(false)}
+                    >
+                      <Link to="/logout" className={classes.link}>
+                        <ListItemButton sx={{ textAlign: "center" }}>
+                          <ListItemText>Logout</ListItemText>
+                        </ListItemButton>
+                      </Link>
+                    </ListItem>
+                  </>
+                ) : (
+                  <>
+                    <ListItem
+                      disablePadding
+                      onClick={() => setOpenDrawer(false)}
+                    >
+                      <Link to="/sign-in" className={classes.link}>
+                        <ListItemButton sx={{ textAlign: "center" }}>
+                          <ListItemText>Login</ListItemText>
+                        </ListItemButton>
+                      </Link>
+                    </ListItem>
+                    <ListItem
+                      disablePadding
+                      onClick={() => setOpenDrawer(false)}
+                    >
+                      <Link to="/sign-up" className={classes.link}>
+                        <ListItemButton sx={{ textAlign: "center" }}>
+                          <ListItemText>Register</ListItemText>
+                        </ListItemButton>
+                      </Link>
+                    </ListItem>
+                  </>
+                )}
               </List>
             </Collapse>
 

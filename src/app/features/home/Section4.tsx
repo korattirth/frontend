@@ -2,14 +2,17 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
-import { Fade, Zoom } from "react-awesome-reveal";
+import { Fade, Slide } from "react-awesome-reveal";
 
 const useStyle = makeStyles((theme: Theme) => ({
   root: {
     padding: "100px 0px",
-    background: "#1C343B",
+    background: "#F5F5F5",
+    "&.MuiGrid-root": {
+      // marginLeft: "-8px",
+    },
     [theme.breakpoints.down("sm")]: {
-      padding: "60px 20px",
+      padding: "50px 20px",
     },
   },
   mainText: {
@@ -17,17 +20,11 @@ const useStyle = makeStyles((theme: Theme) => ({
       lineHeight: "47.48px",
       fontWeight: 400,
       fontFamily: "Roboto Slab",
-      marginBottom: "15px",
-      color: "#ffffff",
-      fontSize: "36px",
-      [theme.breakpoints.down("md")]: {
-        fontSize: "33px",
-        lineHeight: "normal",
-      },
+      color: "#1C343B",
       [theme.breakpoints.down("sm")]: {
         textAlign: "center",
-        fontSize: "30px",
       },
+      fontSize: "36px",
     },
   },
   subText: {
@@ -36,7 +33,7 @@ const useStyle = makeStyles((theme: Theme) => ({
       fontFamily: "Montserrat",
       lineHeight: "24px",
       fontWeight: 400,
-      color: "#ffffff",
+      color: "#1C343B",
       [theme.breakpoints.down("sm")]: {
         textAlign: "center",
       },
@@ -48,24 +45,26 @@ const useStyle = makeStyles((theme: Theme) => ({
       lineHeight: "17px",
       fontWeight: "500",
       fontSize: "14px",
-      marginTop: "30px",
       height: "47px",
+      margin: "10px 25px 0px 0px",
     },
   },
   forButton: {
+    marginTop: "30px",
     [theme.breakpoints.down("sm")]: {
       textAlign: "center",
     },
   },
   mainDIv: {
     paddingLeft: "120px",
-    paddingRight: "20px",
     [theme.breakpoints.down("md")]: {
       paddingLeft: "50px",
     },
     [theme.breakpoints.down("sm")]: {
-      paddingLeft: "0px",
-      paddingRight: "0px",
+      padding: "20px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      marginRight: "20px",
     },
   },
   secondDIv: {
@@ -83,28 +82,32 @@ const useStyle = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Section2 = () => {
+const Section4 = () => {
   const classes = useStyle();
   return (
     <>
       <Grid container className={classes.root}>
-        <Grid item xs={12} sm={6} display="flex" alignItems="center">
+        <Grid item xs={12} sm={6}>
           <Box className={classes.mainDIv}>
-            <Zoom>
+            <Slide direction="left" duration={1400}>
               <Typography className={classes.mainText}>
-                A New Place to Gather
+                Harvard Alumni Day Is Back!
               </Typography>
               <Typography className={classes.subText}>
-                Harvard's first University-wide conference center will serve as
-                a state-of-the-art convening and innovation hub within the
-                planned Enterprise Research Campus in Allston.
+                Save the date for the second annual Harvard Alumni Day! All
+                alumni from across the University are invited to join the HAA on
+                Friday, June 2, 2023, to celebrate Harvard's vibrant, global
+                alumni community.
               </Typography>
               <div className={classes.forButton}>
                 <Button variant="contained" className={classes.button}>
                   Read on the Gazette
                 </Button>
+                <Button variant="contained" className={classes.button}>
+                  Read on the Gazette
+                </Button>
               </div>
-            </Zoom>
+            </Slide>
           </Box>
         </Grid>
         <Grid
@@ -116,9 +119,9 @@ const Section2 = () => {
           justifyContent="center"
         >
           <Box className={classes.secondDIv}>
-            <Fade direction="right" duration={2000}>
+            <Fade duration={1400} direction="right">
               <img
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
                 alt="teamPhoto"
                 width="100%"
               />
@@ -130,4 +133,4 @@ const Section2 = () => {
   );
 };
 
-export default observer(Section2);
+export default observer(Section4);
