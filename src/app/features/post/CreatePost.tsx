@@ -16,6 +16,7 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../store/store";
 import { CreatePostModel } from "../../model/Post";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { toast } from "react-toastify";
 
 const validationSchema = Yup.object({
   topic: Yup.string().required("Topic is Required"),
@@ -102,7 +103,7 @@ const CreatePost = () => {
       formData.append('topic', values.topic);
       formData.append('description', values.description);
       formData.append('file', values.file!);
-      createPost(formData)
+      createPost(formData).then(() => toast.success('Post created successfully!!'))
     },
   });
 

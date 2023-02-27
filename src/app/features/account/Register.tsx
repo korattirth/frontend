@@ -21,6 +21,7 @@ import { useStore } from "../../store/store";
 import { ragisterFormValidation, initialValues } from "../../util/helper";
 import { observer } from "mobx-react-lite";
 import ValidationError from "../../layout/ValidationError";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -75,8 +76,17 @@ function Register() {
   } = useStore();
 
   const handleSignUp = (values: any, setErrors: any) => {
-    signUp(values).catch((errors) => {
-      setErrors({ error: errors });
+    signUp(values).then(() => toast.success('Sign-up successfully!!!')).catch((error) => {
+      const { data } = error.response as any;
+      const modelStateErrors: string[] = [];
+      if (data.data.length > 0) {
+        for (const key in data.data) {
+          if (data.data[key]) {
+            modelStateErrors.push(data.data[key]);
+          }
+        }
+      }
+      setErrors({ error: modelStateErrors });
     });
   };
 

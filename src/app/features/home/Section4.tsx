@@ -2,7 +2,6 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
-import { Fade, Slide } from "react-awesome-reveal";
 
 const useStyle = makeStyles((theme: Theme) => ({
   root: {
@@ -89,25 +88,23 @@ const Section4 = () => {
       <Grid container className={classes.root}>
         <Grid item xs={12} sm={6}>
           <Box className={classes.mainDIv}>
-            <Slide direction="left" duration={1400}>
-              <Typography className={classes.mainText}>
-                Harvard Alumni Day Is Back!
-              </Typography>
-              <Typography className={classes.subText}>
-                Save the date for the second annual Harvard Alumni Day! All
-                alumni from across the University are invited to join the HAA on
-                Friday, June 2, 2023, to celebrate Harvard's vibrant, global
-                alumni community.
-              </Typography>
-              <div className={classes.forButton}>
-                <Button variant="contained" className={classes.button}>
-                  Read on the Gazette
-                </Button>
-                <Button variant="contained" className={classes.button}>
-                  Read on the Gazette
-                </Button>
-              </div>
-            </Slide>
+            <Typography className={classes.mainText}>
+              Harvard Alumni Day Is Back!
+            </Typography>
+            <Typography className={classes.subText}>
+              Save the date for the second annual Harvard Alumni Day! All alumni
+              from across the University are invited to join the HAA on Friday,
+              June 2, 2023, to celebrate Harvard's vibrant, global alumni
+              community.
+            </Typography>
+            <div className={classes.forButton}>
+              <Button variant="contained" className={classes.button}>
+                Read on the Gazette
+              </Button>
+              <Button variant="contained" className={classes.button}>
+                Read on the Gazette
+              </Button>
+            </div>
           </Box>
         </Grid>
         <Grid
@@ -119,13 +116,11 @@ const Section4 = () => {
           justifyContent="center"
         >
           <Box className={classes.secondDIv}>
-            <Fade duration={1400} direction="right">
-              <img
-                src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
-                alt="teamPhoto"
-                width="100%"
-              />
-            </Fade>
+            <img
+              src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+              alt="teamPhoto"
+              width="100%"
+            />
           </Box>
         </Grid>
       </Grid>

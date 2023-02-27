@@ -62,9 +62,9 @@ function LogIn() {
     userStore: { signIn, loading },
   } = useStore();
 
-  const handleSignIn = (values: any, setErrors: any) => {
+  const handleSignIn = (values: any) => {
     signIn(values).catch((err) => {
-      setErrors({ error: "Invalid email or password" });
+      console.log(err)
     });
   };
 
@@ -78,9 +78,9 @@ function LogIn() {
           Sign in
         </Typography>
         <Formik
-          initialValues={{ email: "", password: "", error: "" }}
+          initialValues={{ email: "", password: "" }}
           validationSchema={validationSchema}
-          onSubmit={(values, { setErrors }) => handleSignIn(values, setErrors)}
+          onSubmit={(values) => handleSignIn(values)}
         >
           {({ handleSubmit, touched, errors, isValid, dirty }) => (
             <Form className={classes.form}>
@@ -108,16 +108,6 @@ function LogIn() {
                 helperText={
                   <ErrorMessage name="password" className={classes.error} />
                 }
-              />
-              <ErrorMessage
-                name="error"
-                render={() => (
-                  <>
-                    <Typography className={classes.error}>
-                      {errors.error}
-                    </Typography>
-                  </>
-                )}
               />
               <LoadingButton
                 loading={loading}

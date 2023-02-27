@@ -1,6 +1,5 @@
-import { Avatar, CardHeader, Container, Grid, Typography } from "@mui/material";
-import { red } from "@mui/material/colors";
-import { Box, color } from "@mui/system";
+import { Container, Grid, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
 import { makeStyles } from "@mui/styles";

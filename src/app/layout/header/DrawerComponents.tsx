@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useStore } from "../../store/store";
 import { history } from "../../..";
+import { Roles } from "../../util/shared";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -141,6 +142,15 @@ function DrawerComponents() {
 
             <Collapse in={openNavbar2} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
+                {user?.role === Roles.Admin && (
+                  <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+                    <Link to="/user-list" className={classes.link}>
+                      <ListItemButton sx={{ textAlign: "center" }}>
+                        <ListItemText>User-List</ListItemText>
+                      </ListItemButton>
+                    </Link>
+                  </ListItem>
+                )}
                 {user && (
                   <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
                     <Link to="/create-post" className={classes.link}>

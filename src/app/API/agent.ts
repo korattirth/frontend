@@ -8,7 +8,7 @@ import { store } from "../store/store";
 axios.defaults.baseURL = "http://localhost:8000/";
 
 axios.interceptors.request.use((config) => {
-  delete axios.defaults.headers.common['Authorization'];
+  delete axios.defaults.headers.common["Authorization"];
   const token = store.commonStore.token;
   if (token) config.headers!.Authorization = `Bearer ${token}`;
   return config;
@@ -21,21 +21,22 @@ axios.interceptors.response.use(
   (error: AxiosError) => {
     if (error.response) {
       const { status, data, config, headers } = error.response as any;
-      console.log(data.data, status);
       switch (status) {
 
-        case 422:
-          if (data.data.length > 0) {
-            const modelStateErrors: string[] = [];
-            for (const key in data.data) {
-              if (data.data[key]) {
-                modelStateErrors.push(data.data[key]);
-              }
-            }
-            console.log(modelStateErrors.flat());
-            throw modelStateErrors.flat();
+        case 400:
+          if (data.message) toast.error(data.message);
+          break;
+
+        case 401:
+          if (
+            status === 401 &&  headers["www-authenticate"] &&
+            headers["www-authenticate"].startsWith(
+              'TokenExpiredError: jwt expired'
+            )
+          ) {
+            store.userStore.logout();
+            toast.error("Session expired - please login again");
           }
-          if (typeof data === "string") toast.error(data);
           break;
         
         case 404:
@@ -60,24 +61,28 @@ const Account = {
   signUp: (user: User) => request.post<void>("/account/sign-up", user),
   signIn: (user: LoginForm) => request.post<LoginUser>("account/sign-in", user),
   currentUser: () => request.get<User>("/account/current-user"),
-  editUser: (user: User, userId: string) => request.post<User>(`/account/edit-user/${userId}`, user),
-  uploadImage : (formData: FormData, userId: string) => request.post<string>(`/account/upload-image/${userId}`, formData)
+  editUser: (user: User, userId: string) =>
+    request.post<User>(`/account/edit-user/${userId}`, user),
+  uploadImage: (formData: FormData, userId: string) =>
+    request.post<string>(`/account/upload-image/${userId}`, formData),
 };
 
 const PostAPI = {
-  getAllPost: () => request.get<PostModel[]>('/user/get-all-post'),
-  createPost: (value : FormData) => request.post<void>('/user/create-post',value),
-}
+  getAllPost: () => request.get<PostModel[]>("/user/get-all-post"),
+  createPost: (value: FormData) =>
+    request.post<void>("/user/create-post", value),
+};
 
 const Admin = {
-  getUserList : () => request.get<User[]>('/admin/user-list'),
-  editUserStatus : (userId : string) => request.post<void>('/admin/user-status',{userId}),
-}
+  getUserList: () => request.get<User[]>("/admin/user-list"),
+  editUserStatus: (userId: string) =>
+    request.post<void>("/admin/user-status", { userId }),
+};
 
 const agent = {
   Account,
   PostAPI,
-  Admin
+  Admin,
 };
 
 export default agent;

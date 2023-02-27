@@ -3,7 +3,6 @@ import { Container, Box, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/system";
-import { Fade, Zoom, Slide } from "react-awesome-reveal";
 
 const Section = styled("section")({
   position: "relative",
@@ -78,25 +77,23 @@ const Header = () => {
       <Section>
         <BackgroundImage />
         <Container maxWidth="md" style={{ position: "absolute", zIndex: "2" }}>
-          <Zoom duration={1400}>
-            <Box>
-              <Typography className={classes.headingText}>
-                Meet Harvard’s 30th President
-              </Typography>
-              <Typography className={classes.bodyText}>
-                Claudine Gay PhD ’98, Edgerley Family Dean of Harvard's Faculty
-                of Arts and Sciences and a distinguished scholar of democracy
-                and political participation, will become the first woman of
-                color to lead the University.
-              </Typography>
-              <Button variant="contained" className={classes.button}>
-                Read the Announcement
-              </Button>
-              <Button variant="outlined" className={classes.button}>
-                Hear from Claudine Gay
-              </Button>
-            </Box>
-          </Zoom>
+          <Box>
+            <Typography className={classes.headingText}>
+              Meet Harvard’s 30th President
+            </Typography>
+            <Typography className={classes.bodyText}>
+              Claudine Gay PhD ’98, Edgerley Family Dean of Harvard's Faculty of
+              Arts and Sciences and a distinguished scholar of democracy and
+              political participation, will become the first woman of color to
+              lead the University.
+            </Typography>
+            <Button variant="contained" className={classes.button}>
+              Read the Announcement
+            </Button>
+            <Button variant="outlined" className={classes.button}>
+              Hear from Claudine Gay
+            </Button>
+          </Box>
         </Container>
       </Section>
     </>

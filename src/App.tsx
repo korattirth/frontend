@@ -18,6 +18,9 @@ import PrivateRoute from "./app/layout/PrivateRoute";
 import { Roles } from "./app/util/shared";
 import UserDetails from "./app/features/user/UserDetail";
 import Navbar from "./app/layout/header/Navbar";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+
 
 function App() {
   const { userStore, commonStore } = useStore();
@@ -38,6 +41,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+      <ToastContainer position="bottom-right" hideProgressBar />
         <CssBaseline />
         <Navbar />
         <Routes>
@@ -55,7 +59,7 @@ function App() {
             <Route path="/create-post" element={<PrivateRoute component={CreatePost} />} />
             <Route path="/post-list" element={<PostList />} />
             <Route path="/user-details" element={<PrivateRoute component={UserDetails} />} />
-            <Route path="/not-found" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
         <Footer />

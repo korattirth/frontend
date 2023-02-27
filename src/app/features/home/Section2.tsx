@@ -2,7 +2,6 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
-import { Fade, Zoom } from "react-awesome-reveal";
 
 const useStyle = makeStyles((theme: Theme) => ({
   root: {
@@ -90,21 +89,19 @@ const Section2 = () => {
       <Grid container className={classes.root}>
         <Grid item xs={12} sm={6} display="flex" alignItems="center">
           <Box className={classes.mainDIv}>
-            <Zoom>
-              <Typography className={classes.mainText}>
-                A New Place to Gather
-              </Typography>
-              <Typography className={classes.subText}>
-                Harvard's first University-wide conference center will serve as
-                a state-of-the-art convening and innovation hub within the
-                planned Enterprise Research Campus in Allston.
-              </Typography>
-              <div className={classes.forButton}>
-                <Button variant="contained" className={classes.button}>
-                  Read on the Gazette
-                </Button>
-              </div>
-            </Zoom>
+            <Typography className={classes.mainText}>
+              A New Place to Gather
+            </Typography>
+            <Typography className={classes.subText}>
+              Harvard's first University-wide conference center will serve as a
+              state-of-the-art convening and innovation hub within the planned
+              Enterprise Research Campus in Allston.
+            </Typography>
+            <div className={classes.forButton}>
+              <Button variant="contained" className={classes.button}>
+                Read on the Gazette
+              </Button>
+            </div>
           </Box>
         </Grid>
         <Grid
@@ -116,13 +113,11 @@ const Section2 = () => {
           justifyContent="center"
         >
           <Box className={classes.secondDIv}>
-            <Fade direction="right" duration={2000}>
-              <img
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                alt="teamPhoto"
-                width="100%"
-              />
-            </Fade>
+            <img
+              src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="teamPhoto"
+              width="100%"
+            />
           </Box>
         </Grid>
       </Grid>

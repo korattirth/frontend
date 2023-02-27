@@ -20,6 +20,7 @@ import {
   editUserFormValidation,
   editUserInitialValue,
 } from "../../util/helper";
+import { toast } from "react-toastify";
 
 const useStyle = makeStyles((theme: Theme) => ({
   leftGrid: {
@@ -61,8 +62,10 @@ const UserDetails = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleEditSubmit = (value: any) => {
-    editUser(value, user?.userId!);
-    setEdit(true);
+    editUser(value, user?.userId!).then(() => {
+      toast.success('User-update Successfully!!')
+      setEdit(true);
+    })
   };
 
   const formik = useFormik({
@@ -74,6 +77,7 @@ const UserDetails = () => {
       formData.append("file", values.file!);
       uploadUserImage(formData, user?.userId!).then(() => {
         setSelectedFile(null);
+        toast.success('Image Upload successfully!!')
       });
     },
   });

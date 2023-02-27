@@ -14,6 +14,8 @@ import { history } from "../../..";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useStore } from "../../store/store";
+import { Roles } from "../../util/shared";
 
 const useStyle = makeStyles((theme: Theme) => ({
   nav2button: {
@@ -29,6 +31,9 @@ const useStyle = makeStyles((theme: Theme) => ({
 
 const Nav2 = () => {
   const classes = useStyle();
+  const {
+    userStore: { user },
+  } = useStore();
   const [anchorE2, setAnchorE2] = useState<null | HTMLElement>(null);
   const open2 = Boolean(anchorE2);
   const handleClick2 = (event: React.MouseEvent<HTMLElement>) => {
@@ -51,7 +56,11 @@ const Nav2 = () => {
               News
             </Typography>
             <div>
-              <Button className={classes.nav2button}>Givings</Button>
+              {user?.role === Roles.Admin ? (
+                <Button className={classes.nav2button} onClick={() => history.push('/user-list')}>User-List</Button>
+              ) : (
+                <Button className={classes.nav2button}>Givings</Button>
+              )}
               <Button className={classes.nav2button}>Programe & events</Button>
               <Button className={classes.nav2button}>Travel</Button>
               <Button className={classes.nav2button}>Graduate Schools</Button>
