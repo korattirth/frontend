@@ -13,6 +13,7 @@ export interface User {
   dob: string;
   role: number;
   isActive: boolean;
+  image: string;
 }
 
 export interface LoginForm{

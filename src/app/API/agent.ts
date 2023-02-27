@@ -57,9 +57,11 @@ const request = {
 };
 
 const Account = {
-  signUp: (user: User) => request.post<any>("/account/sign-up", user),
+  signUp: (user: User) => request.post<void>("/account/sign-up", user),
   signIn: (user: LoginForm) => request.post<LoginUser>("account/sign-in", user),
   currentUser: () => request.get<User>("/account/current-user"),
+  editUser: (user: User, userId: string) => request.post<User>(`/account/edit-user/${userId}`, user),
+  uploadImage : (formData: FormData, userId: string) => request.post<string>(`/account/upload-image/${userId}`, formData)
 };
 
 const PostAPI = {

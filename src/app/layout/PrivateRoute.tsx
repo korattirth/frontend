@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { Navigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { useStore } from '../store/store';
 
 interface PropType {

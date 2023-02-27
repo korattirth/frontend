@@ -17,12 +17,6 @@ import { useStore } from "../../store/store";
 import { CreatePostModel } from "../../model/Post";
 import LoadingButton from "@mui/lab/LoadingButton";
 
-type FormValues = {
-  topic: string;
-  description: string;
-  file: File | null;
-};
-
 const validationSchema = Yup.object({
   topic: Yup.string().required("Topic is Required"),
   description: Yup.string()

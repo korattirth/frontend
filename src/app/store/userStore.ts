@@ -7,6 +7,7 @@ import { store } from "./store";
 export default class UserStore {
   user: User | null = null;
   loading: boolean = false;
+  imgBtnLoading: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -19,11 +20,10 @@ export default class UserStore {
       history.push("/sign-in");
     } catch (error) {
       throw error;
-    }
-    finally {
+    } finally {
       runInAction(() => {
         this.loading = false;
-      })
+      });
     }
   };
 
@@ -33,14 +33,13 @@ export default class UserStore {
       const user = await agent.Account.signIn(creds);
       store.commonStore.setToken(user.token);
       runInAction(() => (this.user = user.user));
-      history.push('/')
+      history.push("/");
     } catch (error) {
       throw error;
-    }
-    finally {
+    } finally {
       runInAction(() => {
         this.loading = false;
-      })
+      });
     }
   };
 
@@ -55,11 +54,38 @@ export default class UserStore {
 
       runInAction(() => {
         this.user = user;
-      })
+      });
+    } catch (err) {
+      throw err;
     }
-    catch (err) {
-      throw err
+  };
+
+  editUser = async (user: User, userId: string) => {
+    this.loading = true;
+    try {
+      const edituser = await agent.Account.editUser(user, userId);
+      runInAction(() => (this.user = edituser));
+    } catch (error) {
+      throw error;
+    } finally {
+      runInAction(() => (this.loading = false));
     }
-    
-  }
+  };
+
+  uploadUserImage = async (value: FormData, userId: string) => {
+    this.imgBtnLoading = true;
+    try {
+      const image = await agent.Account.uploadImage(value, userId);
+      runInAction(() => {
+        if (this.user) {
+          this.user.image = image;
+        }
+      });
+    } catch (error) {
+      throw error;
+    }
+    finally {
+      runInAction(() => this.imgBtnLoading = false)
+    }
+  };
 }

@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { User } from "../model/User";
 import { Roles } from "./shared";
 
 export const ragisterFormValidation = () => {
@@ -33,6 +34,28 @@ export const ragisterFormValidation = () => {
   };
 };
 
+export const editUserFormValidation = () => {
+  return {
+    fName: Yup.string().required("First Name is required"),
+    lName: Yup.string().required("Last Name is required"),
+    homeAddress: Yup.string()
+      .required("Home Address is required")
+      .min(20, "Home Address must be 20 character at minimum"),
+    address2: Yup.string()
+      .required("Address is required")
+      .min(10, "Home Address must be 10 character at minimum"),
+    city: Yup.string().required("City is required"),
+    state: Yup.string().required("State is required"),
+    zipcode: Yup.number()
+      .typeError("Please enter a valid Zipcode")
+      .positive("Please enter a positive number")
+      .integer("Please enter a whole number")
+      .min(10000, "Zipcode must be at least 5 digits")
+      .required("Zipcode is required"),
+    dob: Yup.date().required("Date Of birth is required"),
+  };
+};
+
 export const initialValues = {
   fName: "",
   lName: "",
@@ -49,12 +72,23 @@ export const initialValues = {
   error: null,
 };
 
+export const editUserInitialValue = (user : User|null) => {
+  return (
+    {
+      fName: user?.fName,
+      lName: user?.lName,
+      dob: user?.dob.split("T")[0],
+      homeAddress: user?.homeAddress,
+      address2: user?.address2,
+      zipcode: user?.zipcode,
+      state: user?.state,
+      city: user?.city,
+    }
+  )
+}
 
 export const getRole = (id: number) => {
-  if (id === Roles.Admin)
-    return 'Admin'
-  else if (id === Roles.ServiceProvider)
-    return 'Creator'
-  else
-    return 'Student'
-}
+  if (id === Roles.Admin) return "Admin";
+  else if (id === Roles.ServiceProvider) return "Creator";
+  else return "Student";
+};

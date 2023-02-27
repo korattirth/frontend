@@ -1,5 +1,4 @@
 import "./App.css";
-import Navbar from "./app/layout/Navbar";
 import { Outlet, Route, Routes } from "react-router-dom";
 import Footer from "./app/layout/Footer";
 import theme from "./app/util/theme";
@@ -17,6 +16,8 @@ import LoadingComponents from "./app/layout/LoadingComponents";
 import { observer } from "mobx-react-lite";
 import PrivateRoute from "./app/layout/PrivateRoute";
 import { Roles } from "./app/util/shared";
+import UserDetails from "./app/features/user/UserDetail";
+import Navbar from "./app/layout/header/Navbar";
 
 function App() {
   const { userStore, commonStore } = useStore();
@@ -53,6 +54,7 @@ function App() {
             <Route path="/user-list" element={<PrivateRoute component={AdminPage} roles = {Roles.Admin} />} />
             <Route path="/create-post" element={<PrivateRoute component={CreatePost} />} />
             <Route path="/post-list" element={<PostList />} />
+            <Route path="/user-details" element={<PrivateRoute component={UserDetails} />} />
             <Route path="/not-found" element={<NotFound />} />
           </Route>
         </Routes>
