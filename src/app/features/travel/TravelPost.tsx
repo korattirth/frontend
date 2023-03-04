@@ -1,37 +1,17 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardHeader,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Card, CardHeader, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/system";
-import { observer } from "mobx-react-lite";
-import { StoriesPostModel } from "../../model/Post";
 import { getRole } from "../../util/helper";
+import { TravelPostModel } from "../../model/Post";
+import Carousel from "react-material-ui-carousel";
+import Button from "@mui/material/Button";
 import { history } from "../../..";
-
 interface Props {
-  post: StoriesPostModel;
+  travelPost: TravelPostModel;
   postId?: string;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    "&.MuiBox-root": {
-      [theme.breakpoints.up("sm")]: {
-        minHeight: "601px",
-      },
-    },
-  },
-  descriptionBox: {
-    padding : "20px 24px 24px 24px",
-    [theme.breakpoints.up("sm")]: {
-      minHeight: "352px",
-    },
-  },
   imageContainer: {
     // height: "100%",
     display: "flex",
@@ -82,58 +62,62 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Post = ({ post,postId }: Props) => {
+const TravelPost = ({ travelPost, postId }: Props) => {
   const classes = useStyles();
   var isSignlePost: boolean = false;
-  postId === post._id ? (isSignlePost = true) : (isSignlePost = false);
+  postId === travelPost._id ? (isSignlePost = true) : (isSignlePost = false);
 
   return (
-    <Box marginBottom={4}>
-      <Box component={Card} className={classes.root}>
-        <img
-          src={post.image}
-          style={{ width: "100%", height: "260px", objectFit: "contain" }}
-          alt={post.image}
-        />
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          className = {classes.descriptionBox}
-        >
-          <Box>
-            <Typography className={classes.titleText}>{post.topic}</Typography>
-            <Typography className={classes.descriptionText} marginBottom={3}>
-              <span style={{ fontSize: "13px" }}>Date : 10-2-2022</span>
-            </Typography>
-            <Typography className={classes.descriptionText}>
-              {isSignlePost ? (
-                post.description
-              ) : (
-                <>
-                  {post.description.slice(0, 150)}
-                  {post.description.length > 150 ? "......." : null}
-                </>
-              )}
-            </Typography>
-          </Box>
-          <Box>
+    <>
+      <Box>
+        <Box component={Card}>
+          <Carousel>
+            {travelPost.image.map((img, idx) => (
+              <img
+                src={img}
+                style={{ width: "100%", height: "260px", objectFit: "contain" }}
+                alt={img}
+                key={idx}
+              />
+            ))}
+          </Carousel>
+          <Box className="p-3">
+            <Box>
+              <Typography className={classes.titleText}>
+                {travelPost.topic}
+              </Typography>
+              <Typography className={classes.descriptionText} marginBottom={3}>
+                <span style={{ fontSize: "13px" }}>
+                  Date : {travelPost.date}
+                </span>
+              </Typography>
+              <Typography className={classes.descriptionText}>
+                {isSignlePost ? (
+                  travelPost.description
+                ) : (
+                  <>
+                    {travelPost.description.slice(0, 150)}
+                    {travelPost.description.length > 150 ? "......." : null}
+                  </>
+                )}
+              </Typography>
+            </Box>
             <CardHeader
               sx={{ padding: "0px", marginTop: "20px" }}
               avatar={
                 <Avatar sx={{ width: 40, height: 40 }}>
-                  {post.userId.image && (
+                  {travelPost.userId.image && (
                     <img
-                      src={post.userId.image}
+                      src={travelPost.userId.image}
                       width="38px"
-                      alt={post.userId.fName}
+                      alt={travelPost.userId.fName}
                     />
                   )}
                 </Avatar>
               }
               title={
                 <Typography className={classes.titleText}>
-                  {post.userId.fName} {post.userId.lName}
+                  {travelPost.userId.fName} {travelPost.userId.lName}
                 </Typography>
               }
               subheader={
@@ -141,7 +125,7 @@ const Post = ({ post,postId }: Props) => {
                   className={classes.descriptionText}
                   sx={{ "&.MuiTypography-root": { color: "#939393" } }}
                 >
-                  {getRole(post.userId.role)}
+                  {getRole(travelPost.userId.role)}
                 </Typography>
               }
             />
@@ -149,15 +133,12 @@ const Post = ({ post,postId }: Props) => {
               {isSignlePost ? (
                 <Button
                   variant="outlined"
-                  onClick={() => history.push("/post-list")}
+                  onClick={() => history.push("/travel-post-list")}
                 >
                   Back
                 </Button>
               ) : (
-                <Button
-                  variant="outlined"
-                  onClick={() => history.push(`/post/${post._id}`)}
-                >
+                <Button variant="outlined" onClick={() => history.push(`/travel-post/${travelPost._id}`)}>
                   Show More
                 </Button>
               )}
@@ -165,8 +146,8 @@ const Post = ({ post,postId }: Props) => {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 
-export default observer(Post);
+export default TravelPost;

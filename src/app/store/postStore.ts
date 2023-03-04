@@ -1,11 +1,13 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { history } from "../..";
 import agent from "../API/agent";
-import { PostModel } from "../model/Post";
+import { PaginateStoriesPost, StoriesPostModel } from "../model/Post";
 
 export default class PostStore {
-  post: PostModel[] | null = null;
+  posts: PaginateStoriesPost | undefined = undefined;
+  singlePost: StoriesPostModel | null = null;
   loading: boolean = false;
+
 
   constructor() {
     makeAutoObservable(this);
@@ -24,12 +26,27 @@ export default class PostStore {
     }
   };
 
-  getAllPost = async () => {
+  getAllPost = async (currentPage : number , pageSize? : number) => {
     try {
-      const post = await agent.PostAPI.getAllPost();
-      runInAction(() => (this.post = post));
+      const post = await agent.PostAPI.getAllPost(currentPage,pageSize);
+      runInAction(() => {
+        this.posts = post;
+      });
     } catch (error) {
       throw error;
     }
   };
+
+  getSinglePost = async (postId :string) => {
+    try {
+      const post = await agent.PostAPI.getPost(postId);
+      runInAction(() => this.singlePost = post)
+    } catch (error) {
+      throw error
+    }
+  }
+
+  clearSelctedPost = () => {
+    this.singlePost = null;
+  }
 }

@@ -30,7 +30,7 @@ const AdminPage = () => {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }} marginBottom={3}>
         <Grid container spacing={2}>
           {userList.map((user, idx) => (
             <Grid item key={idx} xs={12} sm={6} md={4} lg={3}>

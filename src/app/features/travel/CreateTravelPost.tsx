@@ -13,17 +13,21 @@ import { makeStyles } from "@mui/styles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../store/store";
-import { CreatePostModel } from "../../model/Post";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { toast } from "react-toastify";
+import { CreatePostModel } from "../../model/Post";
+import { useStore } from "../../store/store";
 
 const validationSchema = Yup.object({
   topic: Yup.string().required("Topic is Required"),
+  date: Yup.string().required("Travel date is Required"),
   description: Yup.string()
     .required("Description is Required")
     .min(50, "Minimum 50 charter is Required"),
-  file: Yup.mixed().required("Image is Required"),
+  file: Yup.array()
+    .min(1, "At least one image is required")
+    .max(5 , "You can add Maximum 5 Photos")
+    .required("Image is Required"),
 });
 
 const useStyle = makeStyles((theme: Theme) => ({
@@ -38,9 +42,6 @@ const useStyle = makeStyles((theme: Theme) => ({
       marginTop: "30px",
       [theme.breakpoints.down("sm")]: {
         fontSize: "40px",
-      },
-      [theme.breakpoints.down(340)]: {
-        fontSize: "30px",
       },
     },
   },
@@ -76,16 +77,32 @@ const useStyle = makeStyles((theme: Theme) => ({
   },
 }));
 
-const CreatePost = () => {
-  const classes = useStyle();
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+export interface TravelModel {
+  topic: string;
+  file: File[] | null;
+  description: string;
+  date: string;
+}
 
-  const { postStore : {createPost , loading}} = useStore();
+const CreateTravelPost = () => {
+  const classes = useStyle();
+  const [selectedFile, setSelectedFile] = useState<File[] | null>(null);
+
+  const {
+    travelStore: { createPost, loading },
+  } = useStore();
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0]);
-      formik.setFieldValue("file", event.target.files[0]);
+    if (event.target.files && event.target.files.length < 6) {
+      let uploadedFiles = [];
+      for (var i = 0; i < event.target.files.length; i++) {
+        uploadedFiles.push(event.target.files[i]);
+      }
+      formik.setFieldValue("file", uploadedFiles);
+      setSelectedFile(uploadedFiles);
+    }
+    else {
+      formik.setFieldError('file','You Can Add Mamimum 5 Images')
     }
   };
 
@@ -94,19 +111,25 @@ const CreatePost = () => {
     setSelectedFile(null);
   };
 
-  const formik = useFormik<CreatePostModel>({
+  const formik = useFormik<TravelModel>({
     initialValues: {
       topic: "",
       description: "",
-      file: null,
+      date: "",
+      file: [],
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const formData = new FormData();
-      formData.append('topic', values.topic);
-      formData.append('description', values.description);
-      formData.append('file', values.file!);
-      createPost(formData).then(() => toast.success('Post created successfully!!'))
+      formData.append("topic", values.topic);
+      formData.append("description", values.description);
+      formData.append("date", values.date);
+      for (let i = 0 ; i < values.file!.length ; i++) {
+        formData.append("file", values.file![i]);
+    }
+      createPost(formData).then(() =>
+        toast.success("Post created successfully!!")
+      );
     },
   });
 
@@ -120,7 +143,7 @@ const CreatePost = () => {
           justifyContent="center"
           height="100%"
         >
-          <Typography className={classes.title}>Create Stories</Typography>
+          <Typography className={classes.title}>Create Travel Post</Typography>
           <Grid
             container
             component="form"
@@ -149,19 +172,15 @@ const CreatePost = () => {
                   >
                     {selectedFile ? (
                       <>
-                        <Box>
-                          <img
-                            src={URL.createObjectURL(selectedFile)}
-                            alt="Preview"
-                            width="200px"
-                            height="200px"
-                          />
-                        </Box>
+                        <Typography>
+                          {selectedFile.length} file is selected
+                        </Typography>
                       </>
                     ) : (
                       <>
                         <input
                           accept="image/*"
+                          multiple={true}
                           type="file"
                           id="imgInput"
                           hidden
@@ -170,7 +189,6 @@ const CreatePost = () => {
                         <label htmlFor="imgInput">
                           <CloudUploadIcon sx={{ fontSize: 80 }} />
                           <Typography variant="h6">File Upload</Typography>
-                          {/* Upload component here */}
                         </label>
                         {formik.errors.file ? (
                           <Typography className={classes.errorText}>
@@ -197,6 +215,24 @@ const CreatePost = () => {
                 {formik.errors.topic ? (
                   <Typography className={classes.errorText}>
                     {formik.errors.topic}
+                  </Typography>
+                ) : null}
+                <TextField
+                  name="date"
+                  type="date"
+                  value={formik.values.date}
+                  label="Travel Date"
+                  variant="outlined"
+                  fullWidth
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  margin="normal"
+                  onChange={formik.handleChange}
+                />
+                {formik.errors.date ? (
+                  <Typography className={classes.errorText}>
+                    {formik.errors.date}
                   </Typography>
                 ) : null}
                 <TextField
@@ -229,7 +265,7 @@ const CreatePost = () => {
                 color="primary"
                 sx={{ mr: 2 }}
                 disabled={!formik.isValid || !formik.dirty}
-                loading = {loading}
+                loading={loading}
               >
                 Submit
               </LoadingButton>
@@ -248,4 +284,4 @@ const CreatePost = () => {
   );
 };
 
-export default observer(CreatePost);
+export default observer(CreateTravelPost);

@@ -9,6 +9,7 @@ import {
   ListItemButton,
   Typography,
   Collapse,
+  Chip,
 } from "@mui/material";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -143,14 +144,25 @@ function DrawerComponents() {
             <Collapse in={openNavbar2} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 {user?.role === Roles.Admin && (
-                  <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                    <Link to="/user-list" className={classes.link}>
-                      <ListItemButton sx={{ textAlign: "center" }}>
-                        <ListItemText>User-List</ListItemText>
-                      </ListItemButton>
-                    </Link>
-                  </ListItem>
+                  <>
+                    <Divider>
+                      <Chip label="Admin" />
+                    </Divider>
+                    <ListItem
+                      disablePadding
+                      onClick={() => setOpenDrawer(false)}
+                    >
+                      <Link to="/user-list" className={classes.link}>
+                        <ListItemButton sx={{ textAlign: "center" }}>
+                          <ListItemText>User-List</ListItemText>
+                        </ListItemButton>
+                      </Link>
+                    </ListItem>
+                  </>
                 )}
+                <Divider>
+                  <Chip label="Stories" />
+                </Divider>
                 {user && (
                   <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
                     <Link to="/create-post" className={classes.link}>
@@ -167,13 +179,28 @@ function DrawerComponents() {
                     </ListItemButton>
                   </Link>
                 </ListItem>
+                <Divider>
+                  <Chip label="Travel" />
+                </Divider>
+                {user && (
+                  <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+                    <Link to="/create-travel-post" className={classes.link}>
+                      <ListItemButton sx={{ textAlign: "center" }}>
+                        <ListItemText>Create-Post</ListItemText>
+                      </ListItemButton>
+                    </Link>
+                  </ListItem>
+                )}
                 <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <Link to="/sign-in" className={classes.link}>
+                  <Link to="/travel-post-list" className={classes.link}>
                     <ListItemButton sx={{ textAlign: "center" }}>
-                      <ListItemText>Givings</ListItemText>
+                      <ListItemText>Travel-Post</ListItemText>
                     </ListItemButton>
                   </Link>
                 </ListItem>
+                <Divider>
+                  <Chip label="Other" />
+                </Divider>
                 <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
                   <Link to="/sign-up" className={classes.link}>
                     <ListItemButton sx={{ textAlign: "center" }}>

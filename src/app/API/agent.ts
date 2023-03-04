@@ -1,7 +1,12 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { history } from "../..";
-import { PostModel } from "../model/Post";
+import {
+  PaginateStoriesPost,
+  PaginateTravelPost,
+  StoriesPostModel,
+  TravelPostModel,
+} from "../model/Post";
 import { LoginForm, LoginUser, User } from "../model/User";
 import { store } from "../store/store";
 
@@ -22,25 +27,28 @@ axios.interceptors.response.use(
     if (error.response) {
       const { status, data, config, headers } = error.response as any;
       switch (status) {
-
         case 400:
           if (data.message) toast.error(data.message);
           break;
 
         case 401:
           if (
-            status === 401 &&  headers["www-authenticate"] &&
+            status === 401 &&
+            headers["www-authenticate"] &&
             headers["www-authenticate"].startsWith(
-              'TokenExpiredError: jwt expired'
+              "TokenExpiredError: jwt expired"
             )
           ) {
             store.userStore.logout();
             toast.error("Session expired - please login again");
           }
           break;
-        
+
         case 404:
           history.push("/not-found");
+          break;
+        case 500:
+          toast.error("Somthin gone wrong.. Please try sometime later");
       }
     }
     return Promise.reject(error);
@@ -68,7 +76,12 @@ const Account = {
 };
 
 const PostAPI = {
-  getAllPost: () => request.get<PostModel[]>("/user/get-all-post"),
+  getAllPost: (currentPage: number, pageSize?: number) =>
+    request.get<PaginateStoriesPost>(
+      `/user/get-all-post?page=${currentPage}&&pageSize=${pageSize}`
+    ),
+  getPost: (postId: string) =>
+    request.get<StoriesPostModel>(`/user/get-post/${postId}`),
   createPost: (value: FormData) =>
     request.post<void>("/user/create-post", value),
 };
@@ -79,10 +92,20 @@ const Admin = {
     request.post<void>("/admin/user-status", { userId }),
 };
 
+const TravelAPI = {
+  getTravelPostList: (currentPage: number, pageSize?: number) =>
+    request.get<PaginateTravelPost>(`/travel/travel-post-list?page=${currentPage}&&pageSize=${pageSize}`),
+  getTravelPost: (productId: string) =>
+    request.get<TravelPostModel>(`/travel/travel-post/${productId}`),
+  createTravelPost: (value: FormData) =>
+    request.post<void>("/travel/create-post", value),
+};
+
 const agent = {
   Account,
   PostAPI,
   Admin,
+  TravelAPI,
 };
 
 export default agent;

@@ -18,13 +18,16 @@ import PrivateRoute from "./app/layout/PrivateRoute";
 import { Roles } from "./app/util/shared";
 import UserDetails from "./app/features/user/UserDetail";
 import Navbar from "./app/layout/header/Navbar";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-
+import CreateTravelPost from "./app/features/travel/CreateTravelPost";
+import TravelPostList from "./app/features/travel/TravelPostList";
+import SingleTravelPost from "./app/features/travel/SingleTravelPost";
+import SinglePost from "./app/features/post/SinglePost";
 
 function App() {
   const { userStore, commonStore } = useStore();
-  const { getCurrentUser } = userStore;
+  const { getCurrentUser, user } = userStore;
   const { token } = commonStore;
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -41,7 +44,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-      <ToastContainer position="bottom-right" hideProgressBar />
+        <ToastContainer position="bottom-right" hideProgressBar />
         <CssBaseline />
         <Navbar />
         <Routes>
@@ -53,12 +56,28 @@ function App() {
               </Container>
             }
           >
-            <Route path="/sign-in" element={<LogIn />} />
-            <Route path="/sign-up" element={<Register />} />
-            <Route path="/user-list" element={<PrivateRoute component={AdminPage} roles = {Roles.Admin} />} />
-            <Route path="/create-post" element={<PrivateRoute component={CreatePost} />} />
+            {!user && (
+              <>
+                <Route path="/sign-in" element={<LogIn />} />
+                <Route path="/sign-up" element={<Register />} />
+              </>
+            )}
+            <Route path="/create-post" element={<PrivateRoute component={CreatePost} />}/>
             <Route path="/post-list" element={<PostList />} />
-            <Route path="/user-details" element={<PrivateRoute component={UserDetails} />} />
+            <Route path="/post/:id" element={<SinglePost />} />
+            <Route path="/create-travel-post" element={<PrivateRoute component={CreateTravelPost} />} />
+            <Route path="/travel-post-list" element={<TravelPostList />} />
+            <Route path="/travel-post/:id" element={<SingleTravelPost />} />
+            <Route
+              path="/user-list"
+              element={
+                <PrivateRoute component={AdminPage} roles={Roles.Admin} />
+              }
+            />
+            <Route
+              path="/user-details"
+              element={<PrivateRoute component={UserDetails} />}
+            />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

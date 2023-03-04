@@ -34,6 +34,14 @@ const Nav2 = () => {
   const {
     userStore: { user },
   } = useStore();
+  const [anchorE1, setAnchorE1] = useState<null | HTMLElement>(null);
+  const open1 = Boolean(anchorE1);
+  const handleClick1 = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorE1(event.currentTarget);
+  };
+  const handleClose1 = () => {
+    setAnchorE1(null);
+  };
   const [anchorE2, setAnchorE2] = useState<null | HTMLElement>(null);
   const open2 = Boolean(anchorE2);
   const handleClick2 = (event: React.MouseEvent<HTMLElement>) => {
@@ -62,7 +70,33 @@ const Nav2 = () => {
                 <Button className={classes.nav2button}>Givings</Button>
               )}
               <Button className={classes.nav2button}>Programe & events</Button>
-              <Button className={classes.nav2button}>Travel</Button>
+              <Button
+                id="travel-post-button"
+                aria-controls={open1 ? "travel-post-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open1 ? "true" : undefined}
+                onClick={handleClick1}
+                className={classes.nav2button}
+              >
+                Travel
+              </Button>
+              <Menu
+                id="travel-post-menu"
+                aria-labelledby="travel-post-button"
+                anchorEl={anchorE1}
+                open={open1}
+                onClose={handleClose1}
+                onClick={handleClose1}
+                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              >
+                <MenuItem onClick={() => history.push("/create-travel-post")}>
+                  Create Post
+                </MenuItem>
+                <MenuItem onClick={() => history.push("/travel-post-list")}>
+                  Travel-Post
+                </MenuItem>
+              </Menu> 
               <Button className={classes.nav2button}>Graduate Schools</Button>
               <Button
                 id="post-button"
@@ -85,10 +119,10 @@ const Nav2 = () => {
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
                 <MenuItem onClick={() => history.push("/create-post")}>
-                  Create Post
+                  Create Stories
                 </MenuItem>
                 <MenuItem onClick={() => history.push("/post-list")}>
-                  Post-List
+                  Stories
                 </MenuItem>
               </Menu>
             </div>
