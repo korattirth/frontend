@@ -129,7 +129,6 @@ const CreatePost = () => {
           >
             <Grid item xs={12} sm={6} className={classes.leftSideGridItem}>
               <Box
-                bgcolor="background.paper"
                 borderRadius={2}
                 border={1}
                 p={2}
@@ -184,7 +183,7 @@ const CreatePost = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Box bgcolor="background.paper" p={2} height="100%">
+              <Box p={2} height="100%">
                 <TextField
                   name="topic"
                   value={formik.values.topic}

@@ -1,13 +1,15 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { history } from "../..";
 import agent from "../API/agent";
-import { LoginForm, User } from "../model/User";
+import { LoginForm, Orders, User } from "../model/User";
 import { store } from "./store";
 
 export default class UserStore {
   user: User | null = null;
   loading: boolean = false;
   imgBtnLoading: boolean = false;
+  loadAddCart: string = "";
+  orders: Orders[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -86,6 +88,26 @@ export default class UserStore {
     }
     finally {
       runInAction(() => this.imgBtnLoading = false)
+    }
+  };
+
+  getMyOrders = async() => {
+    try {
+      const orders = await agent.Account.myOrders();
+      runInAction(() => this.orders = orders)
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  addEventToCart = async (eventId: string) => {
+    this.loadAddCart = eventId;
+    try {
+      await agent.EventAPI.addEventToCart(eventId);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.loadAddCart = "";
     }
   };
 }

@@ -1,12 +1,12 @@
-import { Backdrop, CircularProgress, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import React from 'react'
+import { Backdrop, CircularProgress, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import React from "react";
 
 interface Props {
-    message? : string;
+  message?: string;
 }
 
-const LoadingComponents = ({message = 'Loading'} : Props) => {
+const LoadingComponents = ({ message = "Loading" }: Props) => {
   return (
     <Backdrop open = {true} invisible = {true}>
         <Box display='flex' justifyContent='center' alignItems = 'center' height = '100vh'>
@@ -20,7 +20,7 @@ const LoadingComponents = ({message = 'Loading'} : Props) => {
             </Typography>
         </Box>
     </Backdrop>
-  )
-}
+  );
+};
 
-export default LoadingComponents
+export default LoadingComponents;

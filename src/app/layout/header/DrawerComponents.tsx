@@ -8,26 +8,20 @@ import {
   Divider,
   ListItemButton,
   Typography,
-  Collapse,
   Chip,
+  ListItemIcon,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { makeStyles } from "@mui/styles";
 
-import { Link } from "react-router-dom";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useStore } from "../../store/store";
 import { history } from "../../..";
 import { Roles } from "../../util/shared";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 const useStyles = makeStyles(() => ({
-  link: {
-    textDecoration: "none",
-    color: "inherit",
-    textAlign: "center",
-    width: "100%",
-  },
   icon: {
     color: "white",
   },
@@ -48,15 +42,6 @@ function DrawerComponents() {
 
   const classes = useStyles();
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [openNavbar1, setOpenNavbar1] = React.useState(true);
-  const [openNavbar2, setOpenNavbar2] = React.useState(true);
-
-  const handleNav1Click = () => {
-    setOpenNavbar1(!openNavbar1);
-  };
-  const handleNav2Click = () => {
-    setOpenNavbar2(!openNavbar2);
-  };
 
   const handleLogout = () => {
     logout();
@@ -78,152 +63,172 @@ function DrawerComponents() {
         }}
       >
         <Box sx={{ textAlign: "center" }}>
-          <Typography variant="h6" sx={{ my: 2 }}>
-            MUI
+          <Typography
+            component="div"
+            sx={{ my: 2 }}
+            onClick={() => {
+              history.push("/");
+              setOpenDrawer(false);
+            }}
+          >
+            <img src="logo-png-removebg-preview.png" width="150px" alt="logo" />
           </Typography>
-          <Divider />
-          <List>
-            <ListItem className={classes.mainList1}>
-              <ListItemButton onClick={handleNav1Click}>
-                <ListItemText primary="Inbox" />
-                {openNavbar1 ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-            </ListItem>
 
-            <Collapse in={openNavbar1} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
+          <List component="div" disablePadding>
+            {user?.role === Roles.Admin && (
+              <>
+                {/*  Admin - UserList*/}
+                <Divider>
+                  <Chip label="Admin" />
+                </Divider>
                 <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <Link to="/" className={classes.link}>
-                    <ListItemButton sx={{ textAlign: "center" }}>
-                      <ListItemText>Community</ListItemText>
-                    </ListItemButton>
-                  </Link>
+                  <ListItemButton
+                    sx={{ textAlign: "center" }}
+                    onClick={() => history.push("/user-list")}
+                  >
+                    <ListItemText>User-List</ListItemText>
+                  </ListItemButton>
                 </ListItem>
-                {user ? (
-                  <>
-                    <ListItem disablePadding onClick={() => handleLogout()}>
-                      <ListItemButton sx={{ textAlign: "center" }}>
-                        <ListItemText>Logout</ListItemText>
-                      </ListItemButton>
-                    </ListItem>
-                  </>
-                ) : (
-                  <>
-                    <ListItem
-                      disablePadding
-                      onClick={() => setOpenDrawer(false)}
-                    >
-                      <Link to="/sign-in" className={classes.link}>
-                        <ListItemButton sx={{ textAlign: "center" }}>
-                          <ListItemText>Login</ListItemText>
-                        </ListItemButton>
-                      </Link>
-                    </ListItem>
-                    <ListItem
-                      disablePadding
-                      onClick={() => setOpenDrawer(false)}
-                    >
-                      <Link to="/sign-up" className={classes.link}>
-                        <ListItemButton sx={{ textAlign: "center" }}>
-                          <ListItemText>Register</ListItemText>
-                        </ListItemButton>
-                      </Link>
-                    </ListItem>
-                  </>
-                )}
-              </List>
-            </Collapse>
+              </>
+            )}
 
-            <ListItem className={classes.mainList2}>
-              <ListItemButton onClick={handleNav2Click}>
-                <ListItemText primary="Inbox" />
-                {openNavbar2 ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-            </ListItem>
-
-            <Collapse in={openNavbar2} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                {user?.role === Roles.Admin && (
-                  <>
-                    <Divider>
-                      <Chip label="Admin" />
-                    </Divider>
-                    <ListItem
-                      disablePadding
-                      onClick={() => setOpenDrawer(false)}
-                    >
-                      <Link to="/user-list" className={classes.link}>
-                        <ListItemButton sx={{ textAlign: "center" }}>
-                          <ListItemText>User-List</ListItemText>
-                        </ListItemButton>
-                      </Link>
-                    </ListItem>
-                  </>
-                )}
+            {/* Stories */}
+            {user && (
+              <>
                 <Divider>
                   <Chip label="Stories" />
                 </Divider>
-                {user && (
-                  <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                    <Link to="/create-post" className={classes.link}>
-                      <ListItemButton sx={{ textAlign: "center" }}>
-                        <ListItemText>Create-Post</ListItemText>
-                      </ListItemButton>
-                    </Link>
-                  </ListItem>
-                )}
                 <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <Link to="/post-list" className={classes.link}>
-                    <ListItemButton sx={{ textAlign: "center" }}>
-                      <ListItemText>Post-List</ListItemText>
-                    </ListItemButton>
-                  </Link>
+                  <ListItemButton
+                    sx={{ textAlign: "center" }}
+                    onClick={() => history.push("/create-post")}
+                  >
+                    <ListItemText>Create-Stories</ListItemText>
+                  </ListItemButton>
                 </ListItem>
+              </>
+            )}
+            <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => history.push("/post-list")}
+              >
+                <ListItemText>Stories</ListItemText>
+              </ListItemButton>
+            </ListItem>
+
+            {/* Travel */}
+            {user && (
+              <>
                 <Divider>
                   <Chip label="Travel" />
                 </Divider>
-                {user && (
+                {user.role === Roles.Admin && (
                   <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                    <Link to="/create-travel-post" className={classes.link}>
-                      <ListItemButton sx={{ textAlign: "center" }}>
-                        <ListItemText>Create-Post</ListItemText>
-                      </ListItemButton>
-                    </Link>
+                    <ListItemButton
+                      sx={{ textAlign: "center" }}
+                      onClick={() => history.push("/create-travel-post")}
+                    >
+                      <ListItemText>Create-Travel-Post</ListItemText>
+                    </ListItemButton>
                   </ListItem>
                 )}
-                <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <Link to="/travel-post-list" className={classes.link}>
-                    <ListItemButton sx={{ textAlign: "center" }}>
-                      <ListItemText>Travel-Post</ListItemText>
-                    </ListItemButton>
-                  </Link>
-                </ListItem>
+              </>
+            )}
+            <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => history.push("/travel-post-list")}
+              >
+                <ListItemText>Travel-Post</ListItemText>
+              </ListItemButton>
+            </ListItem>
+
+            {/* Events */}
+            {user && (
+              <>
                 <Divider>
-                  <Chip label="Other" />
+                  <Chip label="Events" />
                 </Divider>
-                <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <Link to="/sign-up" className={classes.link}>
-                    <ListItemButton sx={{ textAlign: "center" }}>
-                      <ListItemText>Programe & events</ListItemText>
+                {user.role === Roles.Admin && (
+                  <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+                    <ListItemButton
+                      sx={{ textAlign: "center" }}
+                      onClick={() => history.push("/create-event")}
+                    >
+                      <ListItemText>Create Events</ListItemText>
                     </ListItemButton>
-                  </Link>
+                  </ListItem>
+                )}
+              </>
+            )}
+            <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => history.push("/event-list")}
+              >
+                <ListItemText>Events</ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </List>
+
+          {/* Account */}
+          <List component="div" disablePadding>
+            <Divider>
+              <Chip label="Account" />
+            </Divider>
+            <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => history.push("/user-details")}
+              >
+                <ListItemText>My Profile</ListItemText>
+              </ListItemButton>
+            </ListItem>
+            {user ? (
+              <>
+                <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+                  <ListItemButton
+                    sx={{ textAlign: "center" }}
+                    onClick={() => history.push("/my-cart")}
+                  >
+                    <ListItemText>My Cart</ListItemText>
+                  </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <Link to="/sign-up" className={classes.link}>
-                    <ListItemButton sx={{ textAlign: "center" }}>
-                      <ListItemText>Travel</ListItemText>
-                    </ListItemButton>
-                  </Link>
+                  <ListItemButton
+                    sx={{ textAlign: "center" }}
+                    onClick={() => history.push("/orders")}
+                  >
+                    <ListItemText>My Orders</ListItemText>
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding onClick={() => handleLogout()}>
+                  <ListItemButton sx={{ textAlign: "center" }}>
+                    <ListItemText>Logout</ListItemText>
+                  </ListItemButton>
+                </ListItem>
+              </>
+            ) : (
+              <>
+                <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+                  <ListItemButton
+                    sx={{ textAlign: "center" }}
+                    onClick={() => history.push("/sign-in")}
+                  >
+                    <ListItemText>Login</ListItemText>
+                  </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <Link to="/sign-up" className={classes.link}>
-                    <ListItemButton sx={{ textAlign: "center" }}>
-                      <ListItemText>Graduate Schools</ListItemText>
-                    </ListItemButton>
-                  </Link>
+                  <ListItemButton
+                    sx={{ textAlign: "center" }}
+                    onClick={() => history.push("/sign-up")}
+                  >
+                    <ListItemText>Register</ListItemText>
+                  </ListItemButton>
                 </ListItem>
-              </List>
-            </Collapse>
+              </>
+            )}
           </List>
         </Box>
       </Drawer>

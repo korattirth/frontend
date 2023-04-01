@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../store/store";
+import './MyCart.css'
 
 const useStyles = makeStyles({
   root: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles({
     margin: "32px 0px",
     borderRadius: "10px",
     borderColor: "#1C343B",
+    backgroundColor : '#ffffff'
   },
   form: {
     display: "flex",

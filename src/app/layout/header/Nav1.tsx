@@ -16,6 +16,8 @@ import { useStore } from "../../store/store";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/system";
 import { observer } from "mobx-react-lite";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 
 const useStyle = makeStyles((theme: Theme) => ({
   button: {
@@ -109,11 +111,17 @@ const Nav1 = () => {
               My account
             </MenuItem>
             <Divider />
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => history.push('/my-cart')}>
               <ListItemIcon>
-                <PersonAdd fontSize="small" />
+                <ShoppingCartOutlinedIcon />
               </ListItemIcon>
-              Add another account
+              My Cart
+            </MenuItem>
+            <MenuItem onClick={() => history.push('/orders')}>
+              <ListItemIcon>
+                <ShoppingBagOutlinedIcon />
+              </ListItemIcon>
+              My Orders
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <ListItemIcon>

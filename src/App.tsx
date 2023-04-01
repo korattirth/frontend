@@ -24,11 +24,17 @@ import CreateTravelPost from "./app/features/travel/CreateTravelPost";
 import TravelPostList from "./app/features/travel/TravelPostList";
 import SingleTravelPost from "./app/features/travel/SingleTravelPost";
 import SinglePost from "./app/features/post/SinglePost";
+import EventList from "./app/features/event/EventList";
+import CreateEvent from "./app/features/event/CreateEvent";
+import SingleEvent from "./app/features/event/SingleEvent";
+import MyOrders from "./app/features/account/MyOrders";
+import MyCart from "./app/features/account/MyCart";
 
 function App() {
   const { userStore, commonStore } = useStore();
   const { getCurrentUser, user } = userStore;
   const { token } = commonStore;
+
 
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -38,7 +44,7 @@ function App() {
     } else {
       setLoading(false);
     }
-  }, [userStore, commonStore]);
+  }, [userStore, commonStore, token, getCurrentUser]);
 
   if (loading) return <LoadingComponents message="Initialisin App..." />;
   return (
@@ -65,7 +71,7 @@ function App() {
             <Route path="/create-post" element={<PrivateRoute component={CreatePost} />}/>
             <Route path="/post-list" element={<PostList />} />
             <Route path="/post/:id" element={<SinglePost />} />
-            <Route path="/create-travel-post" element={<PrivateRoute component={CreateTravelPost} />} />
+            <Route path="/create-travel-post" element={<PrivateRoute component={CreateTravelPost} roles={Roles.Admin} />} />
             <Route path="/travel-post-list" element={<TravelPostList />} />
             <Route path="/travel-post/:id" element={<SingleTravelPost />} />
             <Route
@@ -78,6 +84,11 @@ function App() {
               path="/user-details"
               element={<PrivateRoute component={UserDetails} />}
             />
+            <Route path="/create-event" element={<PrivateRoute component={CreateEvent} roles={Roles.Admin} />} />
+            <Route path="/event-list" element={<EventList />} />
+            <Route path="/event/:id" element={<SingleEvent />} />
+            <Route path="/my-cart" element={<PrivateRoute component={MyCart} />} />
+            <Route path="/orders" element={<PrivateRoute component={MyOrders} />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

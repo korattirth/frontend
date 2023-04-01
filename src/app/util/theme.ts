@@ -8,7 +8,13 @@ const theme = createTheme({
     secondary: {
       main: "#f50057",
     },
+    background: {
+      default : '#f4f4f4'
+    }
   },
+  typography: {
+    "fontFamily": `Montserrat`,
+   }
 });
 
 export default theme;

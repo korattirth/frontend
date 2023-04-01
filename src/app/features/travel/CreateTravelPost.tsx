@@ -15,7 +15,6 @@ import * as Yup from "yup";
 import { observer } from "mobx-react-lite";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { toast } from "react-toastify";
-import { CreatePostModel } from "../../model/Post";
 import { useStore } from "../../store/store";
 
 const validationSchema = Yup.object({
@@ -26,7 +25,7 @@ const validationSchema = Yup.object({
     .min(50, "Minimum 50 charter is Required"),
   file: Yup.array()
     .min(1, "At least one image is required")
-    .max(5 , "You can add Maximum 5 Photos")
+    .max(5, "You can add Maximum 5 Photos")
     .required("Image is Required"),
 });
 
@@ -100,9 +99,8 @@ const CreateTravelPost = () => {
       }
       formik.setFieldValue("file", uploadedFiles);
       setSelectedFile(uploadedFiles);
-    }
-    else {
-      formik.setFieldError('file','You Can Add Mamimum 5 Images')
+    } else {
+      formik.setFieldError("file", "You Can Add Mamimum 5 Images");
     }
   };
 
@@ -124,9 +122,9 @@ const CreateTravelPost = () => {
       formData.append("topic", values.topic);
       formData.append("description", values.description);
       formData.append("date", values.date);
-      for (let i = 0 ; i < values.file!.length ; i++) {
+      for (let i = 0; i < values.file!.length; i++) {
         formData.append("file", values.file![i]);
-    }
+      }
       createPost(formData).then(() =>
         toast.success("Post created successfully!!")
       );
@@ -152,7 +150,6 @@ const CreateTravelPost = () => {
           >
             <Grid item xs={12} sm={6} className={classes.leftSideGridItem}>
               <Box
-                bgcolor="background.paper"
                 borderRadius={2}
                 border={1}
                 p={2}
@@ -202,7 +199,7 @@ const CreateTravelPost = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Box bgcolor="background.paper" p={2} height="100%">
+              <Box p={2} height="100%">
                 <TextField
                   name="topic"
                   value={formik.values.topic}

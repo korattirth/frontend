@@ -2,15 +2,18 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { history } from "../..";
 import {
+  EventModel,
+  PaginateEvent,
   PaginateStoriesPost,
   PaginateTravelPost,
   StoriesPostModel,
   TravelPostModel,
 } from "../model/Post";
-import { LoginForm, LoginUser, User } from "../model/User";
+import { Events, LoginForm, LoginUser, Orders, User } from "../model/User";
 import { store } from "../store/store";
 
 axios.defaults.baseURL = "http://localhost:8000/";
+const sleep = () => new Promise(resolve => setTimeout(resolve,50));
 
 axios.interceptors.request.use((config) => {
   delete axios.defaults.headers.common["Authorization"];
@@ -21,6 +24,7 @@ axios.interceptors.request.use((config) => {
 
 axios.interceptors.response.use(
   async (response) => {
+    if(process.env.NODE_ENV === 'development') await sleep();
     return response;
   },
   (error: AxiosError) => {
@@ -73,6 +77,7 @@ const Account = {
     request.post<User>(`/account/edit-user/${userId}`, user),
   uploadImage: (formData: FormData, userId: string) =>
     request.post<string>(`/account/upload-image/${userId}`, formData),
+  myOrders : () => request.get<Orders[]>('/account/my-orders')
 };
 
 const PostAPI = {
@@ -94,18 +99,42 @@ const Admin = {
 
 const TravelAPI = {
   getTravelPostList: (currentPage: number, pageSize?: number) =>
-    request.get<PaginateTravelPost>(`/travel/travel-post-list?page=${currentPage}&&pageSize=${pageSize}`),
+    request.get<PaginateTravelPost>(
+      `/travel/travel-post-list?page=${currentPage}&&pageSize=${pageSize}`
+    ),
   getTravelPost: (productId: string) =>
     request.get<TravelPostModel>(`/travel/travel-post/${productId}`),
   createTravelPost: (value: FormData) =>
     request.post<void>("/travel/create-post", value),
 };
 
+const EventAPI = {
+  createEvent: (value: FormData) =>
+    request.post<void>("/event/create-event", value),
+  getHighlightedEventList: () =>
+    request.get<EventModel[]>("/event/highlighted-event-list"),
+  getEventList: (currentPage: number, pageSize?: number) =>
+    request.get<PaginateEvent>(
+      `/event/event-list?page=${currentPage}&&pageSize=${pageSize}`
+    ),
+  getEvent: (eventId: string) =>
+    request.get<EventModel>(`/event/get-event/${eventId}`),
+  addEventToCart: (eventId: string) =>
+    request.post<void>(`/event/add-event-cart/${eventId}`, {}),
+};
+
+const Payment = {
+  eventPayment: (values: Events[]) => request.post<any>(`/event/create-checkout-session`, values),
+  postOrders: (url: string) => request.post(url, {})
+}
+
 const agent = {
   Account,
   PostAPI,
   Admin,
   TravelAPI,
+  EventAPI,
+  Payment
 };
 
 export default agent;

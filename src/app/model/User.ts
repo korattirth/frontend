@@ -1,3 +1,5 @@
+import { EventModel } from "./Post";
+
 export interface User {
   userId: string;
   fName: string;
@@ -14,6 +16,24 @@ export interface User {
   role: number;
   isActive: boolean;
   image: string;
+  cart: Cart;
+}
+
+export interface Cart{
+  events : Events[]
+}
+
+export interface Events{
+  eventId: EventModel;
+  quantity: number;
+}
+
+export interface Orders{
+  _id: string;
+  userId: string;
+  eventId: EventModel;
+  quantity: number;
+  createdAt: string;
 }
 
 export interface LoginForm{

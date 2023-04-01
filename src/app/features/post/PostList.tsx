@@ -53,7 +53,7 @@ const PostList = () => {
         <Box width="100%" textAlign="center">
           <Typography className={classes.title}>Trending</Typography>
         </Box>
-        <Container className="mb-5">
+        <Box className="mb-5">
           {posts && (
             <InfiniteScroll
               pageStart={0}
@@ -72,7 +72,7 @@ const PostList = () => {
               </Grid>
              </InfiniteScroll>
           )}
-        </Container>
+        </Box>
       </Container>
     </>
   );

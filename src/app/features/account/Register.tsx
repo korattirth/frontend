@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: "32px 0px",
     borderRadius: "10px",
     borderColor: "#1C343B",
+    backgroundColor : 'white'
     // [theme.breakpoints.up('xl')]: {
     //   width : '750px'
     // }
@@ -269,13 +270,13 @@ function Register() {
                     }
                   />
                 </Grid>
-                <Grid item sm={6} xs={12}>
+                <Grid item sm={6} xs={12} display='flex' alignItems='center' marginTop = {-0.8}>
                   <FormControl fullWidth error={touched.department && Boolean(errors.department)}>
-                    <InputLabel id="demo-simple-select-label">
+                    <InputLabel id="department">
                       Department
                     </InputLabel>
                     <Select
-                      labelId="demo-simple-select-label"
+                      labelId="department"
                       id="demo-simple-select"
                       label="Department"
                       name="department"

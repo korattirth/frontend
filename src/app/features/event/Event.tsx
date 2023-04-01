@@ -1,15 +1,19 @@
-import { Avatar, Box, Card, CardHeader, Typography } from "@mui/material";
+import { Avatar, Box, Card, CardHeader, Chip, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/system";
 import { getRole } from "../../util/helper";
-import { TravelPostModel } from "../../model/Post";
-import Carousel from "react-material-ui-carousel";
+import { EventModel } from "../../model/Post";
 import Button from "@mui/material/Button";
 import { history } from "../../..";
 import { observer } from "mobx-react-lite";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import LoadingButton from "@mui/lab/LoadingButton";
+import { useStore } from "../../store/store";
+import { toast } from "react-toastify";
+
 interface Props {
-  travelPost: TravelPostModel;
-  postId?: string;
+  event: EventModel;
+  eventId?: string;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -63,62 +67,72 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const TravelPost = ({ travelPost, postId }: Props) => {
+const Event = ({ event, eventId }: Props) => {
   const classes = useStyles();
   var isSignlePost: boolean = false;
-  postId === travelPost._id ? (isSignlePost = true) : (isSignlePost = false);
+  eventId === event._id ? (isSignlePost = true) : (isSignlePost = false);
+
+  const {userStore : {addEventToCart,loadAddCart,getCurrentUser} } = useStore();
+
+  const handleAddToCart = (eventId : string) => {
+    addEventToCart(eventId).then(() => {
+      getCurrentUser();
+      toast.success("Event added into cart")
+    })
+  }
 
   return (
     <>
       <Box>
-        <Box component={Card}>
-          <Carousel>
-            {travelPost.image.map((img, idx) => (
-              <img
-                src={img}
-                style={{ width: "100%", height: "260px", objectFit: "contain" }}
-                alt={img}
-                key={idx}
-              />
-            ))}
-          </Carousel>
+        <Box component={Card} width="100%" sx={{ position: "relative" }}>
+          <Chip
+            label={event.price === 0 ? "Free" : event.price + " $"}
+            sx={{
+              borderRadius: "5px",
+              position: "absolute",
+              top: "2%",
+              left: "2%",
+              width: "70px",
+            }}
+            color="primary"
+          />
+
+          <img
+            src={event.image}
+            style={{ width: "100%", height: "250px", objectFit: "contain" }}
+            alt={event.image}
+          />
           <Box className="p-3">
             <Box>
               <Typography className={classes.titleText}>
-                {travelPost.topic}
+                {event.topic}
               </Typography>
               <Typography className={classes.descriptionText} marginBottom={3}>
-                <span style={{ fontSize: "13px" }}>
-                  Date : {travelPost.date}
-                </span>
+                <span style={{ fontSize: "13px" }}>Date : {event.date}</span>
               </Typography>
               <Typography className={classes.descriptionText}>
-                {isSignlePost ? (
-                  travelPost.description
-                ) : (
-                  <>
-                    {travelPost.description.slice(0, 150)}
-                    {travelPost.description.length > 150 ? "......." : null}
-                  </>
-                )}
+                <b>Event Type </b>: {event.type}
+              </Typography>
+              <Typography className={classes.descriptionText}>
+                {isSignlePost ? event.description : null}
               </Typography>
             </Box>
             <CardHeader
               sx={{ padding: "0px", marginTop: "20px" }}
               avatar={
                 <Avatar sx={{ width: 40, height: 40 }}>
-                  {travelPost.userId.image && (
+                  {event.userId.image && (
                     <img
-                      src={travelPost.userId.image}
+                      src={event.userId.image}
                       width="38px"
-                      alt={travelPost.userId.fName}
+                      alt={event.userId.fName}
                     />
                   )}
                 </Avatar>
               }
               title={
                 <Typography className={classes.titleText}>
-                  {travelPost.userId.fName} {travelPost.userId.lName}
+                  {event.userId.fName} {event.userId.lName}
                 </Typography>
               }
               subheader={
@@ -126,23 +140,34 @@ const TravelPost = ({ travelPost, postId }: Props) => {
                   className={classes.descriptionText}
                   sx={{ "&.MuiTypography-root": { color: "#939393" } }}
                 >
-                  {getRole(travelPost.userId.role)}
+                  {getRole(event.userId.role)}
                 </Typography>
               }
             />
-            <Box textAlign="right">
+            <Box textAlign="center" marginTop={3}>
               {isSignlePost ? (
                 <Button
                   variant="outlined"
-                  onClick={() => history.push("/travel-post-list")}
+                  onClick={() => history.push("/event-list")}
                 >
                   Back
                 </Button>
               ) : (
-                <Button variant="outlined" onClick={() => history.push(`/travel-post/${travelPost._id}`)}>
-                  Show More
+                <Button
+                  variant="outlined"
+                  onClick={() => history.push(`/event/${event._id}`)}
+                >
+                  Read More
                 </Button>
               )}
+              <LoadingButton
+                loading={loadAddCart === event._id}
+                variant="outlined"
+                startIcon={<AddShoppingCartIcon />}
+                  onClick={() => handleAddToCart(event._id)}
+                >
+                  Add To Cart
+                </LoadingButton>
             </Box>
           </Box>
         </Box>
@@ -151,4 +176,4 @@ const TravelPost = ({ travelPost, postId }: Props) => {
   );
 };
 
-export default observer(TravelPost);
+export default observer(Event);
