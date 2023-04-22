@@ -77,12 +77,12 @@ const Section1 = () => {
         </Grid>
         <Grid item xs={12} sm={6} padding="0px 15px">
           <Typography className={classes.mainText}>
-            Alumni Committee Nominates Harvard Board Candidates
+            Alumni Committee Nominates Alumni Board Candidates
           </Typography>
           <Typography className={classes.subText}>
-            Harvard degree holders will have the opportunity to vote for new
-            members of the Harvard Board of Overseers and elected directors of
-            the Harvard Alumni Association this spring.1
+            High School Diploma degree holders will have the opportunity to vote for new
+            members of the ALumni Board of Overseers and elected directors of
+            the TS High School Alumni Association this spring.
           </Typography>
           <div className={classes.forButton}>
             <Button variant="contained" className={classes.button}>

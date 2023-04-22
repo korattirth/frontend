@@ -89,12 +89,12 @@ const Section4 = () => {
         <Grid item xs={12} sm={6}>
           <Box className={classes.mainDIv}>
             <Typography className={classes.mainText}>
-              Harvard Alumni Day Is Back!
+              TS High School Alumni Day Is Back!
             </Typography>
             <Typography className={classes.subText}>
-              Save the date for the second annual Harvard Alumni Day! All alumni
-              from across the University are invited to join the HAA on Friday,
-              June 2, 2023, to celebrate Harvard's vibrant, global alumni
+              Save the date for the second annual Alumni Day! All alumni
+              from across the School are invited to join the HAA on Friday,
+              June 2, 2023, to celebrate TS High School's vibrant, alumni
               community.
             </Typography>
             <div className={classes.forButton}>
