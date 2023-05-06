@@ -28,6 +28,7 @@
     "react": "^18.2.0",
     "react-cropper": "^2.1.8",
     "react-dom": "^18.2.0",
+    "react-faq-component": "^1.3.4",
     "react-infinite-scroller": "^1.2.6",
     "react-material-ui-carousel": "^3.4.2",
     "react-multi-carousel": "^2.8.2",

@@ -72,6 +72,16 @@ export default class EventStore {
       this.loadAddCart = "";
     }
   };
+  removeEventToCart = async (eventId: string) => {
+    this.loadAddCart = eventId;
+    try {
+      await agent.EventAPI.removeEventToCart(eventId);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.loadAddCart = "";
+    }
+  };
 
   eventPayment =async (values:Events[]) => {
     try {

@@ -121,11 +121,22 @@ const EventAPI = {
     request.get<EventModel>(`/event/get-event/${eventId}`),
   addEventToCart: (eventId: string) =>
     request.post<void>(`/event/add-event-cart/${eventId}`, {}),
+  removeEventToCart: (eventId: string) =>
+    request.post<void>(`/event/remove-event-cart/${eventId}`, {}),
 };
 
 const Payment = {
   eventPayment: (values: Events[]) => request.post<any>(`/event/create-checkout-session`, values),
   postOrders: (url: string) => request.post(url, {})
+}
+const Contact = {
+  postQuestion: (values:any) => request.post<any>(`/contact/add-question`, values),
+  postAnswer: (values:any,questionId:string) => request.post<any>(`/contact/add-answer/${questionId}`, values),
+  getQuestion: () => request.get<any[]>(`/contact/get-question`),
+  getQuestionForAdmin: () => request.get<any[]>(`/contact/get-question-admin`),
+  getStudentList: () => request.get<User[]>(`/contact/get-student-list`),
+  getEventList: () => request.get<EventModel[]>(`/contact/get-event-list`),
+  postSuggestedData: (data:any) => request.post<void>(`/contact/suggest-students`,data),
 }
 
 const agent = {
@@ -134,7 +145,8 @@ const agent = {
   Admin,
   TravelAPI,
   EventAPI,
-  Payment
+  Payment,
+  Contact
 };
 
 export default agent;

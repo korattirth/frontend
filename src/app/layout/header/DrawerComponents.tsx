@@ -9,7 +9,6 @@ import {
   ListItemButton,
   Typography,
   Chip,
-  ListItemIcon,
 } from "@mui/material";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,8 +17,6 @@ import { makeStyles } from "@mui/styles";
 import { useStore } from "../../store/store";
 import { history } from "../../..";
 import { Roles } from "../../util/shared";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 const useStyles = makeStyles(() => ({
   icon: {
@@ -171,6 +168,41 @@ function DrawerComponents() {
               </ListItemButton>
             </ListItem>
           </List>
+
+          {/* Contact */}
+          {user && (
+            <>
+              <Divider>
+                <Chip label="Contact us" />
+              </Divider>
+              {user.role === Roles.Admin && (
+                <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+                  <ListItemButton
+                    sx={{ textAlign: "center" }}
+                    onClick={() => history.push("/create-travel-post")}
+                  >
+                    <ListItemText>Create-Travel-Post</ListItemText>
+                  </ListItemButton>
+                </ListItem>
+              )}
+              <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+                  <ListItemButton
+                    sx={{ textAlign: "center" }}
+                    onClick={() => history.push("/suggest")}
+                  >
+                    <ListItemText>Suggest User</ListItemText>
+                  </ListItemButton>
+              </ListItem>
+            </>
+          )}
+          <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              onClick={() => history.push("/que-ans")}
+            >
+              <ListItemText>Contact-us</ListItemText>
+            </ListItemButton>
+          </ListItem>
 
           {/* Account */}
           <List component="div" disablePadding>

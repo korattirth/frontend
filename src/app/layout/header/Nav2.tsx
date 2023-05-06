@@ -90,8 +90,14 @@ const Nav2 = () => {
                   User-List
                 </Button>
               ) : (
-                <Button className={classes.nav2button}>Givings</Button>
+                null
               )}
+              {user && <Button
+                  className={classes.nav2button}
+                  onClick={() => history.push("/suggest")}
+                >
+                  Suggest User
+                </Button>}
               {user && user.role === Roles.Admin ? (
                 <>
                   <Button
@@ -170,7 +176,6 @@ const Nav2 = () => {
                   Travel-Post
                 </Button>
               )}
-              <Button className={classes.nav2button}>Graduate Schools</Button>
               <Button
                 id="post-button"
                 aria-controls={open2 ? "post-menu" : undefined}
@@ -198,6 +203,7 @@ const Nav2 = () => {
                   Stories
                 </MenuItem>
               </Menu>
+              {user && <Button onClick={() => history.push("/que-ans")} className={classes.nav2button}>Contact us</Button>}
             </div>
 
             <IconButton
