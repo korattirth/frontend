@@ -93,9 +93,9 @@ const Section2 = () => {
               A New Place to Gather
             </Typography>
             <Typography className={classes.subText}>
-              Harvard's first University-wide conference center will serve as a
-              state-of-the-art convening and innovation hub within the planned
-              Enterprise Research Campus in Allston.
+            Reunions continue in-person in 2023! All of us at the Alumni Association are so excited to 
+            welcome you back! We look forward to hosting a reunion for each class celebrating a milestone 
+            year and all alumni are invited to celebrate with us at our next All-Class Reunion Weekend on October 21-22, 2022.
             </Typography>
             <div className={classes.forButton}>
               <Button variant="contained" className={classes.button}>

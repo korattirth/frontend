@@ -56,15 +56,16 @@ const Footer = () => {
         >
           <Box>
             <div>
-              <p className={classes.firstDivText1}>Lorem, ipsum dolor elit.</p>
+              <p className={classes.firstDivText1}>MAILING ADDRESS: 
+</p>
               <p className={classes.firstDivText2}>
-                Lorem ipsum dolor sit, amet consectetur adipisicing.
+              TS High School Alumni Association, PO Box 3531, New York, NY 10008-3531
               </p>
             </div>
             <div>
-              <p className={classes.firstDivText1}>Lorem, ipsum dolor elit.</p>
+              <p className={classes.firstDivText1}>OFFICE LOCATION: </p>
               <p className={classes.firstDivText2}>
-                Lorem ipsum dolor sit, amet consectetur adipisicing.
+              345 Chambers Street, Room 101, NY, NY
               </p>
             </div>
           </Box>
@@ -85,24 +86,28 @@ const Footer = () => {
             alignItems="center"
             justifyContent="center"
           >
-            <Grid item md={4} sm={12}>
-              <p className={classes.secodeDivText1}>CONTACT</p>
-              <p className={classes.secodeDivText2}>Lorem ipsum elit Porro.</p>
-              <p className={classes.secodeDivText2}>Lorem ipsum elit Porro.</p>
-              <p className={classes.secodeDivText2}>Lorem ipsum elit Porro.</p>
+            <Grid item md={4} sm={20}>
+              <p className={classes.secodeDivText1}>CONTACT PERSON</p>
+              <p className={classes.secodeDivText2}>President: Jim Carry</p>
+              <p className={classes.secodeDivText2}>VP: Alison Cartor </p>
+              <p className={classes.secodeDivText2}>Secretory: Matt Smith</p>
+              <p className={classes.secodeDivText2}>Treasurer: john garcia</p>
+
             </Grid>
-            <Grid item md={4} sm={12}>
-              <p className={classes.secodeDivText1}>Social Media</p>
-              <p className={classes.secodeDivText2}>Lorem ipsum elit Porro.</p>
-              <p className={classes.secodeDivText2}>Lorem ipsum elit Porro.</p>
-              <p className={classes.secodeDivText2}>Lorem ipsum elit Porro.</p>
+            <Grid item md={4} sm={20}>
+              <p className={classes.secodeDivText1}>EMAILS</p>
+              <p className={classes.secodeDivText2}>jim.carry@gmail.com</p>
+              <p className={classes.secodeDivText2}>alisoncartor33@yahoo.com</p>
+              <p className={classes.secodeDivText2}>msmith@aol.com</p>
+              <p className={classes.secodeDivText2}>johngarcia@gmail.com</p>
+
             </Grid>
-            <Grid item md={4} sm={12}>
+            {/* <Grid item md={4} sm={20}>
               <p className={classes.secodeDivText1}>Get Help</p>
               <p className={classes.secodeDivText2}>Lorem ipsum elit Porro.</p>
               <p className={classes.secodeDivText2}>Lorem ipsum elit Porro.</p>
               <p className={classes.secodeDivText2}>Lorem ipsum elit Porro.</p>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
         <Grid
