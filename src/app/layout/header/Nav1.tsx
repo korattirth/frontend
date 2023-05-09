@@ -69,9 +69,6 @@ const Nav1 = () => {
   };
   return (
     <>
-      <Button className={classes.button} component={NavLink} to="/">
-        community
-      </Button>
       {user ? (
         <>
           <Tooltip title="Account settings">

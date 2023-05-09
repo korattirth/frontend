@@ -118,7 +118,7 @@ function DrawerComponents() {
             {user && (
               <>
                 <Divider>
-                  <Chip label="Travel" />
+                  <Chip label="News" />
                 </Divider>
                 {user.role === Roles.Admin && (
                   <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
@@ -126,7 +126,7 @@ function DrawerComponents() {
                       sx={{ textAlign: "center" }}
                       onClick={() => history.push("/create-travel-post")}
                     >
-                      <ListItemText>Create-Travel-Post</ListItemText>
+                      <ListItemText>Create-News</ListItemText>
                     </ListItemButton>
                   </ListItem>
                 )}
@@ -137,7 +137,7 @@ function DrawerComponents() {
                 sx={{ textAlign: "center" }}
                 onClick={() => history.push("/travel-post-list")}
               >
-                <ListItemText>Travel-Post</ListItemText>
+                <ListItemText>News</ListItemText>
               </ListItemButton>
             </ListItem>
 
@@ -200,7 +200,7 @@ function DrawerComponents() {
               sx={{ textAlign: "center" }}
               onClick={() => history.push("/que-ans")}
             >
-              <ListItemText>Contact-us</ListItemText>
+              <ListItemText>FAQs</ListItemText>
             </ListItemButton>
           </ListItem>
 

@@ -146,7 +146,7 @@ const Nav2 = () => {
                     onClick={handleClick1}
                     className={classes.nav2button}
                   >
-                    Travel
+                    News
                   </Button>
                   <Menu
                     id="travel-post-menu"
@@ -161,10 +161,10 @@ const Nav2 = () => {
                     <MenuItem
                       onClick={() => history.push("/create-travel-post")}
                     >
-                      Create Post
+                      Create News
                     </MenuItem>
                     <MenuItem onClick={() => history.push("/travel-post-list")}>
-                      Travel-Post
+                      News
                     </MenuItem>
                   </Menu>
                 </>
@@ -173,7 +173,7 @@ const Nav2 = () => {
                   className={classes.nav2button}
                   onClick={() => history.push("/travel-post-list")}
                 >
-                  Travel-Post
+                  News
                 </Button>
               )}
               <Button
@@ -203,7 +203,7 @@ const Nav2 = () => {
                   Stories
                 </MenuItem>
               </Menu>
-              {user && <Button onClick={() => history.push("/que-ans")} className={classes.nav2button}>Contact us</Button>}
+              {user && <Button onClick={() => history.push("/que-ans")} className={classes.nav2button}>FAQs</Button>}
             </div>
 
             <IconButton
@@ -211,7 +211,8 @@ const Nav2 = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
+              sx={{ mr: 2}}
+              style={{pointerEvents:'none'}}
             >
               <MenuIcon />
             </IconButton>

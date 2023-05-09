@@ -1,0 +1,27 @@
+alumni1    Alison Cartor 
+email1     alisoncartor33@yahoo.com
+position1  VP
+
+alumni2    Jim Carry
+email2     jim.carry@gmail.com
+position2   President
+
+alumni3    Matt Smith
+email3     msmith@aol.com
+position3  Secretory
+
+alumni4     john garcia
+email4      johngarcia@gmail.com
+position4   Treasurer
+
+alumni5     John Mc'Clain
+email5      john.m@gmail.com
+position5   Assistant Treasurer 
+
+alumni6     tiffany anderson
+email6       tanderson@aol.com
+position6   PR
+
+alumni7      jessica williams
+email7        jessica.williams2@gmail.com
+position7    Event Coordinator
