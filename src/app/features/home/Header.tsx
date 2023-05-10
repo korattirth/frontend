@@ -3,6 +3,7 @@ import { Container, Box, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/system";
+import { history } from "../../..";
 
 const Section = styled("section")({
   position: "relative",
@@ -88,10 +89,10 @@ const Header = () => {
             </Typography>
             
           
-            <Button variant="contained" className={classes.button}>
+            <Button variant="contained" className={classes.button} onClick={() => history.push('/travel-post-list')}>
               Read the Announcement
             </Button>
-            <Button variant="outlined" className={classes.button}>
+            <Button variant="outlined" className={classes.button} onClick={() => history.push('/travel-post-list')}>
               Hear from Claudine Gay
             </Button>
           </Box>

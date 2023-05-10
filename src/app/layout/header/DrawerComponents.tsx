@@ -203,6 +203,14 @@ function DrawerComponents() {
               <ListItemText>FAQs</ListItemText>
             </ListItemButton>
           </ListItem>
+          <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => history.push("/our-team")}
+              >
+                <ListItemText>Our Team</ListItemText>
+              </ListItemButton>
+          </ListItem>
 
           {/* Account */}
           <List component="div" disablePadding>

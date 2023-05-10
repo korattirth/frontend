@@ -90,7 +90,7 @@ function App() {
             <Route path="/create-event" element={<PrivateRoute component={CreateEvent} roles={Roles.Admin} />} />
             <Route path="/event-list" element={<EventList />} />
             <Route path="/event/:id" element={<SingleEvent />} />
-            <Route path="/test" element={<OurTeam />} />
+            <Route path="/our-team" element={<OurTeam />} />
             <Route path="/suggest" element={<PrivateRoute component={SuggestedPeople} />} />
             <Route path="/my-cart" element={<PrivateRoute component={MyCart} />} />
             <Route path="/orders" element={<PrivateRoute component={MyOrders} />} />

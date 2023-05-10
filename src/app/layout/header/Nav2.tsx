@@ -204,6 +204,12 @@ const Nav2 = () => {
                 </MenuItem>
               </Menu>
               {user && <Button onClick={() => history.push("/que-ans")} className={classes.nav2button}>FAQs</Button>}
+              <Button
+                  className={classes.nav2button}
+                  onClick={() => history.push("/our-team")}
+                >
+                  Our Team
+              </Button>
             </div>
 
             <IconButton

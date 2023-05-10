@@ -126,7 +126,7 @@ function LogIn() {
         </Formik>
         <Divider className={classes.divider} />
         <Typography textAlign="center" margin="20px 0px">
-          New user?<Link to={"/sign-up"}>ragister</Link>
+          New user?<Link to={"/sign-up"}>Register</Link>
         </Typography>
       </Box>
     </Container>

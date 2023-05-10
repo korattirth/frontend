@@ -2,6 +2,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
+import { history } from "../../..";
 
 const useStyle = makeStyles((theme: Theme) => ({
   root: {
@@ -98,7 +99,7 @@ const Section2 = () => {
             year and all alumni are invited to celebrate with us at our next All-Class Reunion Weekend on October 21-22, 2022.
             </Typography>
             <div className={classes.forButton}>
-              <Button variant="contained" className={classes.button}>
+              <Button variant="contained" className={classes.button} onClick={() => history.push('/travel-post-list')}>
                 Read on the Gazette
               </Button>
             </div>

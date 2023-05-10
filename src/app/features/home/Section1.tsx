@@ -2,6 +2,7 @@ import { Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
+import { history } from "../../..";
 
 const useStyle = makeStyles((theme: Theme) => ({
   root: {
@@ -85,7 +86,7 @@ const Section1 = () => {
             the TS High School Alumni Association this spring.
           </Typography>
           <div className={classes.forButton}>
-            <Button variant="contained" className={classes.button}>
+            <Button variant="contained" className={classes.button} onClick={() => history.push('/travel-post-list')}>
               Read on the Gazette
             </Button>
           </div>

@@ -11,7 +11,7 @@ function MyOrders() {
 
   useEffect(() => {
     getMyOrders();
-  }, []);
+  }, [getMyOrders]);
 
   return (
     <>

@@ -194,7 +194,7 @@ function Register() {
                   <Field
                     as={TextField}
                     name="homeAddress"
-                    label="Home Address"
+                    label="Address 1"
                     type="text"
                     variant="outlined"
                     fullWidth
@@ -214,7 +214,7 @@ function Register() {
                   <Field
                     as={TextField}
                     name="address2"
-                    label="Address"
+                    label="Address 2"
                     type="text"
                     variant="outlined"
                     fullWidth

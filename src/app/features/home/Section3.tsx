@@ -2,6 +2,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
+import { history } from "../../..";
 
 const useStyle = makeStyles((theme: Theme) => ({
   root: {
@@ -220,6 +221,7 @@ const Section3 = () => {
                 variant="contained"
                 sx={{ marginBottom: "30px" }}
                 className={classes.button}
+                onClick={() => history.push('/post-list')}
               >
                 View All Stories
               </Button>
@@ -273,10 +275,10 @@ const Section3 = () => {
             </Grid>
           </Grid>
           <div className={classes.forButton} style={{ marginTop: "30px" }}>
-            <Button variant="outlined" className={classes.button}>
+            <Button variant="outlined" className={classes.button} onClick={() => history.push('/event-list')}>
               View All Upcoming Events
             </Button>
-            <Button variant="outlined" className={classes.button}>
+            <Button variant="outlined" className={classes.button} onClick={() => history.push('/event-list')}>
               View Featured Programs
             </Button>
           </div>
