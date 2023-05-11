@@ -141,7 +141,7 @@ const CreateTravelPost = () => {
           justifyContent="center"
           height="100%"
         >
-          <Typography className={classes.title}>Create Travel Post</Typography>
+          <Typography className={classes.title}>Create News</Typography>
           <Grid
             container
             component="form"

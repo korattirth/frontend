@@ -2,18 +2,19 @@ import { Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
+import { history } from "../../..";
 
 const useStyle = makeStyles((theme: Theme) => ({
   root: {
     padding: "100px 0px",
-    background: "#FFFFFF",
+    background: "#a81c0c",
   },
   mainText: {
     "&.MuiTypography-root": {
       lineHeight: "47.48px",
       fontWeight: 400,
       fontFamily: "Roboto Slab",
-      color: "#1C343B",
+      color: "white",
       fontSize: "36px",
       [theme.breakpoints.down("md")]: {
         fontSize: "33px",
@@ -33,7 +34,7 @@ const useStyle = makeStyles((theme: Theme) => ({
       fontFamily: "Montserrat",
       lineHeight: "24px",
       fontWeight: 400,
-      color: "#1C343B",
+      color: "white",
       [theme.breakpoints.down("sm")]: {
         textAlign: "center",
       },
@@ -82,10 +83,10 @@ const Section1 = () => {
           <Typography className={classes.subText}>
             High School Diploma degree holders will have the opportunity to vote for new
             members of the ALumni Board of Overseers and elected directors of
-            the TS High School Alumni Association this spring.
+            the Maggotty High School Alumni Association this spring.
           </Typography>
           <div className={classes.forButton}>
-            <Button variant="contained" className={classes.button}>
+            <Button variant="contained" className={classes.button} onClick={() => history.push('/travel-post-list')}>
               Read on the Gazette
             </Button>
           </div>

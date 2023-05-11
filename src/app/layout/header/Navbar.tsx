@@ -14,7 +14,7 @@ const Navbar = () => {
         <AppBar
           position="static"
           sx={{
-            backgroundColor: "#629549",
+            backgroundColor: "#ffcc2c",
             height: "50px",
             alignItems: "flex-end",
             justifyContent: "center",

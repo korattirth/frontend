@@ -65,7 +65,7 @@ const Nav2 = () => {
         <AppBar
           position="static"
           sx={{
-            backgroundColor: "#1C343B",
+            backgroundColor: "#a81c0c",
           }}
         >
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -76,8 +76,8 @@ const Nav2 = () => {
               onClick={() => history.push("/")}
             >
               <img
-                src="logo-png-removebg-preview.png"
-                width="150px"
+                src="maggote_logo.png"
+                width="80px"
                 alt="logo"
               />
             </Typography>
@@ -204,6 +204,12 @@ const Nav2 = () => {
                 </MenuItem>
               </Menu>
               {user && <Button onClick={() => history.push("/que-ans")} className={classes.nav2button}>FAQs</Button>}
+              <Button
+                  className={classes.nav2button}
+                  onClick={() => history.push("/our-team")}
+                >
+                  Our Team
+              </Button>
             </div>
 
             <IconButton

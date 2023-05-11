@@ -12,7 +12,7 @@ import {
 import { Events, LoginForm, LoginUser, Orders, User } from "../model/User";
 import { store } from "../store/store";
 
-axios.defaults.baseURL = "http://localhost:8000/";
+axios.defaults.baseURL = "https://ts.readyle.live/";
 const sleep = () => new Promise(resolve => setTimeout(resolve,50));
 
 axios.interceptors.request.use((config) => {

@@ -95,7 +95,7 @@ function Register() {
     <Container style={{ display: "flex", justifyContent: "center" }}>
       <Box className={clsx(classes.root, "border")}>
         <div className={clsx(classes.centerContent, "mt-5 mb-4")}>
-          <img src="./The TS High School.png" width="60%" alt="logo" />
+          <img src="./maggote_logo.png" width="20%" alt="logo" />
         </div>
         <Typography variant="h4" align="center" color="#606060" gutterBottom>
           Sign in
@@ -194,7 +194,7 @@ function Register() {
                   <Field
                     as={TextField}
                     name="homeAddress"
-                    label="Home Address"
+                    label="Address 1"
                     type="text"
                     variant="outlined"
                     fullWidth
@@ -214,7 +214,7 @@ function Register() {
                   <Field
                     as={TextField}
                     name="address2"
-                    label="Address"
+                    label="Address 2"
                     type="text"
                     variant="outlined"
                     fullWidth

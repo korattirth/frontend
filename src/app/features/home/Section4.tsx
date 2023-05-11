@@ -6,7 +6,7 @@ import { Theme } from "@mui/system";
 const useStyle = makeStyles((theme: Theme) => ({
   root: {
     padding: "100px 0px",
-    background: "#F5F5F5",
+    background: "#ffcc2c",
     "&.MuiGrid-root": {
       // marginLeft: "-8px",
     },
@@ -19,7 +19,7 @@ const useStyle = makeStyles((theme: Theme) => ({
       lineHeight: "47.48px",
       fontWeight: 400,
       fontFamily: "Roboto Slab",
-      color: "#1C343B",
+      color: "white",
       [theme.breakpoints.down("sm")]: {
         textAlign: "center",
       },
@@ -32,7 +32,7 @@ const useStyle = makeStyles((theme: Theme) => ({
       fontFamily: "Montserrat",
       lineHeight: "24px",
       fontWeight: 400,
-      color: "#1C343B",
+      color: "white",
       [theme.breakpoints.down("sm")]: {
         textAlign: "center",
       },
@@ -89,12 +89,12 @@ const Section4 = () => {
         <Grid item xs={12} sm={6}>
           <Box className={classes.mainDIv}>
             <Typography className={classes.mainText}>
-              TS High School Alumni Day Is Back!
+              Maggotty High School Alumni Day Is Back!
             </Typography>
             <Typography className={classes.subText}>
               Save the date for the second annual Alumni Day! All alumni
               from across the School are invited to join the HAA on Friday,
-              June 2, 2023, to celebrate TS High School's vibrant, alumni
+              June 2, 2023, to celebrate Maggotty High School's vibrant, alumni
               community.
             </Typography>
             <div className={classes.forButton}>

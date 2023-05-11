@@ -3,6 +3,7 @@ import { Container, Box, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/system";
+import { history } from "../../..";
 
 const Section = styled("section")({
   position: "relative",
@@ -82,16 +83,16 @@ const Header = () => {
               Meet Ts High School Alumni Association President
             </Typography>
             <Typography className={classes.bodyText}>
-            To maintain the relationship of alumni to Stuyvesant High School (the “School”) 
+            To maintain the relationship of alumni to Maggotty High School (the “School”) 
             and to each other through written and other communications, and social, academic 
             and other events;
             </Typography>
             
           
-            <Button variant="contained" className={classes.button}>
+            <Button variant="contained" className={classes.button} onClick={() => history.push('/travel-post-list')}>
               Read the Announcement
             </Button>
-            <Button variant="outlined" className={classes.button}>
+            <Button variant="outlined" className={classes.button} onClick={() => history.push('/travel-post-list')}>
               Hear from Claudine Gay
             </Button>
           </Box>

@@ -14,15 +14,15 @@ const OurTeam = () => {
                         </div>
                         <div className="col-md-6 flex-valign text-md-right">
                             <h3 className="text-uppercase text-letter-spacing-xs mt-0 mb-1 text-dark font-weight-bold">
-                                Mike Jones
+                            Jim Carry
                             </h3>
                             <h5 className="my-0 font-weight-normal">
-                                <em>Strength Coach</em>
+                                <em>President</em>
                             </h5>
                             <hr className="hr-primary w-70 ml-0 ml-md-auto mr-md-0 mb-3" />
-                                <p>Aptent dolore enim facilisi humo magna melior nisl occuro. Ad os sed utinam. Accumsan autem brevitas esse exerci ludus ratis.</p>
-                                <p>Adipiscing nimis sed tego turpis. Abico genitus quadrum qui singularis te.</p>
-                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> Train with Mike</a>
+                                <p></p>
+                                <p></p>
+                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> jim.carry@gmail.com</a>
                         </div>
                     </div>
                     <div className="row mb-5">
@@ -31,15 +31,15 @@ const OurTeam = () => {
                         </div>
                         <div className="col-md-6 flex-valign">
                             <h3 className="text-uppercase text-letter-spacing-xs mt-0 mb-1 text-dark font-weight-bold">
-                                Kim Kirk
+                            Alison Cartor 
                             </h3>
                             <h5 className="my-0 font-weight-normal">
-                                <em>Prenatal Specialist</em>
+                                <em>VP</em>
                             </h5>
                             <hr className="hr-primary w-70 ml-0 mb-3" />
-                                <p>Commoveo gilvus iaceo nutus pagus tincidunt. Eligo nutus proprius saluto vulputate. Brevitas eligo et fere quadrum quae ratis.</p>
-                                <p>Eum pecus quis. Accumsan genitus humo inhibeo ut vel. Augue bene enim gemino ideo ille luptatum os veniam venio.</p>
-                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> Train with Kim</a>
+                                <p></p>
+                                <p></p>
+                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> alisoncartor33@yahoo.com</a>
                         </div>
                     </div>
                     <div className="row mb-5">
@@ -48,15 +48,15 @@ const OurTeam = () => {
                         </div>
                         <div className="col-md-6 flex-valign text-md-right">
                             <h3 className="text-uppercase text-letter-spacing-xs mt-0 mb-1 text-dark font-weight-bold">
-                                Mike Jones
+                            Matt Smith
                             </h3>
                             <h5 className="my-0 font-weight-normal">
-                                <em>Strength Coach</em>
+                                <em>Secretory</em>
                             </h5>
                             <hr className="hr-primary w-70 ml-0 ml-md-auto mr-md-0 mb-3" />
-                                <p>Aptent dolore enim facilisi humo magna melior nisl occuro. Ad os sed utinam. Accumsan autem brevitas esse exerci ludus ratis.</p>
-                                <p>Adipiscing nimis sed tego turpis. Abico genitus quadrum qui singularis te.</p>
-                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> Train with Mike</a>
+                                <p></p>
+                                <p></p>
+                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> msmith@aol.com</a>
                         </div>
                     </div>
                     <div className="row mb-5">
@@ -65,15 +65,15 @@ const OurTeam = () => {
                         </div>
                         <div className="col-md-6 flex-valign">
                             <h3 className="text-uppercase text-letter-spacing-xs mt-0 mb-1 text-dark font-weight-bold">
-                                Kim Kirk
+                            tiffany anderson
                             </h3>
                             <h5 className="my-0 font-weight-normal">
-                                <em>Prenatal Specialist</em>
+                                <em>PR</em>
                             </h5>
                             <hr className="hr-primary w-70 ml-0 mb-3" />
-                                <p>Commoveo gilvus iaceo nutus pagus tincidunt. Eligo nutus proprius saluto vulputate. Brevitas eligo et fere quadrum quae ratis.</p>
-                                <p>Eum pecus quis. Accumsan genitus humo inhibeo ut vel. Augue bene enim gemino ideo ille luptatum os veniam venio.</p>
-                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> Train with Kim</a>
+                                <p></p>
+                                <p></p>
+                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> tanderson@aol.com</a>
                         </div>
                     </div>
                     <div className="row mb-5">
@@ -82,15 +82,15 @@ const OurTeam = () => {
                         </div>
                         <div className="col-md-6 flex-valign text-md-right">
                             <h3 className="text-uppercase text-letter-spacing-xs mt-0 mb-1 text-dark font-weight-bold">
-                                Mike Jones
+                            jessica williams
                             </h3>
                             <h5 className="my-0 font-weight-normal">
-                                <em>Strength Coach</em>
+                                <em>Event Coordinator</em>
                             </h5>
                             <hr className="hr-primary w-70 ml-0 ml-md-auto mr-md-0 mb-3" />
-                                <p>Aptent dolore enim facilisi humo magna melior nisl occuro. Ad os sed utinam. Accumsan autem brevitas esse exerci ludus ratis.</p>
-                                <p>Adipiscing nimis sed tego turpis. Abico genitus quadrum qui singularis te.</p>
-                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> Train with Mike</a>
+                                <p></p>
+                                <p></p>
+                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> jessica.williams2@gmail.com</a>
                         </div>
                     </div>
                     <div className="row mb-5">
@@ -99,15 +99,15 @@ const OurTeam = () => {
                         </div>
                         <div className="col-md-6 flex-valign">
                             <h3 className="text-uppercase text-letter-spacing-xs mt-0 mb-1 text-dark font-weight-bold">
-                                Kim Kirk
+                            john garcia
                             </h3>
                             <h5 className="my-0 font-weight-normal">
-                                <em>Prenatal Specialist</em>
+                                <em>Treasurer</em>
                             </h5>
                             <hr className="hr-primary w-70 ml-0 mb-3" />
-                                <p>Commoveo gilvus iaceo nutus pagus tincidunt. Eligo nutus proprius saluto vulputate. Brevitas eligo et fere quadrum quae ratis.</p>
-                                <p>Eum pecus quis. Accumsan genitus humo inhibeo ut vel. Augue bene enim gemino ideo ille luptatum os veniam venio.</p>
-                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> Train with Kim</a>
+                                <p></p>
+                                <p></p>
+                                <a href="#join" data-toggle="scroll-link" className="text-sm font-weight-bold"><i className="fa fa-chevron-right text-xs text-pink"></i> johngarcia@gmail.com</a>
                         </div>
                     </div>
             </div>

@@ -2,11 +2,12 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
+import { history } from "../../..";
 
 const useStyle = makeStyles((theme: Theme) => ({
   root: {
     padding: "100px 0px",
-    background: "#1C343B",
+    background: "#ffcc2c",
     [theme.breakpoints.down("sm")]: {
       padding: "60px 20px",
     },
@@ -17,7 +18,7 @@ const useStyle = makeStyles((theme: Theme) => ({
       fontWeight: 400,
       fontFamily: "Roboto Slab",
       marginBottom: "15px",
-      color: "#ffffff",
+      color: "black",
       fontSize: "36px",
       [theme.breakpoints.down("md")]: {
         fontSize: "33px",
@@ -35,7 +36,7 @@ const useStyle = makeStyles((theme: Theme) => ({
       fontFamily: "Montserrat",
       lineHeight: "24px",
       fontWeight: 400,
-      color: "#ffffff",
+      color: "black",
       [theme.breakpoints.down("sm")]: {
         textAlign: "center",
       },
@@ -98,7 +99,7 @@ const Section2 = () => {
             year and all alumni are invited to celebrate with us at our next All-Class Reunion Weekend on October 21-22, 2022.
             </Typography>
             <div className={classes.forButton}>
-              <Button variant="contained" className={classes.button}>
+              <Button variant="contained" className={classes.button} onClick={() => history.push('/travel-post-list')}>
                 Read on the Gazette
               </Button>
             </div>

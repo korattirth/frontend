@@ -74,7 +74,7 @@ function LogIn() {
     <Container maxWidth="sm">
       <Box className={clsx(classes.root, "border")}>
         <div className={clsx(classes.centerContent, "mt-5 mb-4")}>
-          <img src="./The TS High School.png" width="60%" alt="logo" />
+          <img src="./maggote_logo.png" width="20%" alt="logo" />
         </div>
         <Typography variant="h4" align="center" color="#606060">
           Sign in
@@ -126,7 +126,7 @@ function LogIn() {
         </Formik>
         <Divider className={classes.divider} />
         <Typography textAlign="center" margin="20px 0px">
-          New user?<Link to={"/sign-up"}>ragister</Link>
+          New user?<Link to={"/sign-up"}>Register</Link>
         </Typography>
       </Box>
     </Container>

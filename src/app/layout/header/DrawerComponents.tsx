@@ -23,11 +23,11 @@ const useStyles = makeStyles(() => ({
     color: "white",
   },
   mainList1: {
-    backgroundColor: "#629549",
+    backgroundColor: "#a81c0c",
     color: "white",
   },
   mainList2: {
-    backgroundColor: "#1C343B",
+    backgroundColor: "#ffcc2c",
     color: "white",
   },
 }));
@@ -68,7 +68,7 @@ function DrawerComponents() {
               setOpenDrawer(false);
             }}
           >
-            <img src="logo-png-removebg-preview.png" width="150px" alt="logo" />
+            <img src="maggote_logo.png" width="80px" alt="logo" />
           </Typography>
 
           <List component="div" disablePadding>
@@ -202,6 +202,14 @@ function DrawerComponents() {
             >
               <ListItemText>FAQs</ListItemText>
             </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                onClick={() => history.push("/our-team")}
+              >
+                <ListItemText>Our Team</ListItemText>
+              </ListItemButton>
           </ListItem>
 
           {/* Account */}

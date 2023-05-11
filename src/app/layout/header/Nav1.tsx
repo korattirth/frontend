@@ -120,12 +120,6 @@ const Nav1 = () => {
               </ListItemIcon>
               My Orders
             </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <Settings fontSize="small" />
-              </ListItemIcon>
-              Settings
-            </MenuItem>
             <MenuItem onClick={logout}>
               <ListItemIcon>
                 <Logout fontSize="small" />

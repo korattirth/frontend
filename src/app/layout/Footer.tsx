@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: "#1C343B",
+    backgroundColor: "#a81c0c",
   },
   icon: {
     color: "white",
@@ -59,7 +59,7 @@ const Footer = () => {
               <p className={classes.firstDivText1}>MAILING ADDRESS: 
 </p>
               <p className={classes.firstDivText2}>
-              TS High School Alumni Association, PO Box 3531, New York, NY 10008-3531
+              Maggotty High School Alumni Association, PO Box 3531, New York, NY 10008-3531
               </p>
             </div>
             <div>
