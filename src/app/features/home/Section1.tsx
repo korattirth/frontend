@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography, colors } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { observer } from "mobx-react-lite";
 import { Theme } from "@mui/system";
@@ -71,7 +71,7 @@ const Section1 = () => {
           justifyContent="center"
         >
           <img
-            src="https://images.unsplash.com/photo-1603201667141-5a2d4c673378?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1196&q=80"
+            src="../MGT.jpg"
             alt="teamPhoto"
             width="90%"
           />
@@ -86,7 +86,7 @@ const Section1 = () => {
             the Maggotty High School Alumni Association this spring.
           </Typography>
           <div className={classes.forButton}>
-            <Button variant="contained" className={classes.button} onClick={() => history.push('/travel-post-list')}>
+            <Button variant="contained" style={{backgroundColor: '#ffcc2c',color: 'black'}} className={classes.button} onClick={() => history.push('/travel-post-list')}>
               Read on the Gazette
             </Button>
           </div>

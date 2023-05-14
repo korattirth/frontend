@@ -33,7 +33,7 @@ const BackgroundImage = styled("div")({
   backgroundSize: "cover",
   //   backgroundRepeat : 'no-repeat',
   backgroundPosition: "center",
-  backgroundImage: `url('../israel-andrade-YI_9SivVt_s-unsplash.jpg')`,
+  backgroundImage: `url('../file.jpg')`,
 });
 
 const useStyle = makeStyles((theme: Theme) => ({
@@ -80,7 +80,7 @@ const Header = () => {
         <Container maxWidth="md" style={{ position: "absolute", zIndex: "2" }}>
           <Box>
             <Typography className={classes.headingText}>
-              Meet Ts High School Alumni Association President
+              Meet The Maggotty High School Alumni Association President
             </Typography>
             <Typography className={classes.bodyText}>
             To maintain the relationship of alumni to Maggotty High School (the “School”) 
