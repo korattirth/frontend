@@ -59,8 +59,7 @@ const Footer = () => {
               <p className={classes.firstDivText1}>MAILING ADDRESS: 
 </p>
               <p className={classes.firstDivText2}>
-              Maggotty High School Alumni Association, PO Box 3531, New York, NY 10008-3531
-              </p>
+      Maggotty High School P.O Box 4 Maggotty St. Elizabeth. Jamaica, W.I.              </p>
             </div>
             <div>
               <p className={classes.firstDivText1}>OFFICE LOCATION: </p>
