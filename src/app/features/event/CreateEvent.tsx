@@ -134,7 +134,7 @@ const CreateEvent = () => {
   });
   return (
     <>
-      <Box minHeight="80vh">
+      <Box minHeight="80vh" marginTop='95px'>
         <Container maxWidth="md" sx={{ height: "100%" }}>
           <Box
             display="flex"

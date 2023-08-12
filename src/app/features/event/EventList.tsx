@@ -8,6 +8,7 @@ import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/system";
 import "react-multi-carousel/lib/styles.css";
 import MoreEvents from "./MoreEvents";
+import EventLoader from "../../layout/Loader/EventLoader";
 
 const useStyles = makeStyles((theme: Theme) => ({
   highlightedEvent: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const EventList = () => {
   const classes = useStyles();
   const {
-    eventStore: { highlightedEvents, getHighlightedEventList },
+    eventStore: { highlightedEvents, getHighlightedEventList, events },
   } = useStore();
 
   const responsive = {
@@ -51,8 +52,8 @@ const EventList = () => {
 
   return (
     <>
-      <Container className="mb-5">
-        {highlightedEvents && (
+      <Container className="mb-5 h-70" style={{marginTop : '95px'}}>
+        {highlightedEvents && highlightedEvents.length === 0 ? <EventLoader /> : (
           <>
             <Typography className={classes.highlightedEvent} marginLeft={3}>
               Highlighted events ({highlightedEvents.length})
@@ -66,12 +67,14 @@ const EventList = () => {
             </Carousel>
           </>
         )}
-        <Box className="mb-5">
-          <Typography className={classes.highlightedEvent} marginBottom={3}>
-            Upcoming Events
-          </Typography>
-          <MoreEvents />
-        </Box>
+        {events && events.postList && events.postList.length === 0 ? <EventLoader /> :
+          <Box className="mb-5">
+            {events && events.postList && events.postList.length > 0 &&
+              <Typography className={classes.highlightedEvent} marginBottom={3}>
+                Upcoming Events
+              </Typography>}
+            <MoreEvents />
+          </Box>}
       </Container>
     </>
   );

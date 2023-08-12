@@ -17,6 +17,7 @@ import { makeStyles } from "@mui/styles";
 import { useStore } from "../../store/store";
 import { history } from "../../..";
 import { Roles } from "../../util/shared";
+import { observer } from "mobx-react-lite";
 
 const useStyles = makeStyles(() => ({
   icon: {
@@ -175,16 +176,6 @@ function DrawerComponents() {
               <Divider>
                 <Chip label="Contact us" />
               </Divider>
-              {user.role === Roles.Admin && (
-                <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
-                  <ListItemButton
-                    sx={{ textAlign: "center" }}
-                    onClick={() => history.push("/create-travel-post")}
-                  >
-                    <ListItemText>Create-Travel-Post</ListItemText>
-                  </ListItemButton>
-                </ListItem>
-              )}
               <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
                   <ListItemButton
                     sx={{ textAlign: "center" }}
@@ -195,14 +186,14 @@ function DrawerComponents() {
               </ListItem>
             </>
           )}
-          <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+          {user && <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
             <ListItemButton
               sx={{ textAlign: "center" }}
               onClick={() => history.push("/que-ans")}
             >
               <ListItemText>FAQs</ListItemText>
             </ListItemButton>
-          </ListItem>
+          </ListItem>}
           <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
               <ListItemButton
                 sx={{ textAlign: "center" }}
@@ -217,7 +208,9 @@ function DrawerComponents() {
             <Divider>
               <Chip label="Account" />
             </Divider>
-            <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
+            {user ? (
+              <>
+              <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
               <ListItemButton
                 sx={{ textAlign: "center" }}
                 onClick={() => history.push("/user-details")}
@@ -225,8 +218,6 @@ function DrawerComponents() {
                 <ListItemText>My Profile</ListItemText>
               </ListItemButton>
             </ListItem>
-            {user ? (
-              <>
                 <ListItem disablePadding onClick={() => setOpenDrawer(false)}>
                   <ListItemButton
                     sx={{ textAlign: "center" }}
@@ -281,4 +272,4 @@ function DrawerComponents() {
     </>
   );
 }
-export default DrawerComponents;
+export default observer(DrawerComponents);

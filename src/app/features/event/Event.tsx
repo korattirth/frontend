@@ -72,13 +72,18 @@ const Event = ({ event, eventId }: Props) => {
   var isSignlePost: boolean = false;
   eventId === event._id ? (isSignlePost = true) : (isSignlePost = false);
 
-  const {userStore : {addEventToCart,loadAddCart,getCurrentUser} } = useStore();
+  const {userStore : {addEventToCart,loadAddCart,getCurrentUser,user} } = useStore();
 
   const handleAddToCart = (eventId : string) => {
-    addEventToCart(eventId).then(() => {
-      getCurrentUser();
-      toast.success("Event added into cart")
-    })
+    if(user){
+      addEventToCart(eventId).then(() => {
+        getCurrentUser();
+        toast.success("Event added into cart")
+      })
+    }
+    else{
+      history.push('/sign-in')
+    }
   }
 
   return (

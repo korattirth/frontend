@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import * as Yup from "yup";
 import { makeStyles } from "@mui/styles";
-import { Box, Container, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Box, CircularProgress, Container, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import clsx from "clsx";
@@ -117,6 +117,7 @@ function SuggestedPeople() {
                                     label="Students"
                                     name="suggestedStudents"
                                     value={values.suggestedStudents}
+                                    startAdornment={students && students.length === 0 && <CircularProgress size={20} />}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     error = {touched.suggestedStudents && Boolean(errors.suggestedStudents)}

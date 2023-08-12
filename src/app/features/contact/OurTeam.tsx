@@ -3,7 +3,7 @@ import './OurTeam.css'
 const OurTeam = () => {
     return (
         <>
-            <div className="container py-7">
+            <div className="container py-7" style={{marginTop:'95px'}}>
                 <h2 className="text-uppercase text-letter-spacing-xs my-0 text-dark font-weight-bold">
                     Our Team <i className="ion-ios-body pl-1 text-primary op-8 z-index-1"></i>
                 </h2>

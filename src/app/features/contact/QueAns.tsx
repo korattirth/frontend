@@ -12,6 +12,7 @@ import { observer } from 'mobx-react-lite';
 import { Roles } from '../../util/shared';
 import MyForm from './MyForm';
 import LoadingButton from "@mui/lab/LoadingButton";
+import EventLoader from '../../layout/Loader/EventLoader';
 
 function QueAns() {
 
@@ -80,12 +81,12 @@ function QueAns() {
 
   return (
     <>
-      <Box textAlign='right' marginBottom={1}>
+      <Box textAlign='right' marginBottom={1} marginTop='95px'>
         <Button variant='outlined' onClick={handleOpen}>Add Question</Button>
       </Box>
       
       <Box minHeight='70vh'>
-        {questions && questions.map((faq: any, index: number) => (
+        {questions && questions.length > 0 ? questions.map((faq: any, index: number) => (
               <Accordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography variant="h6">{faq.question}</Typography>
@@ -101,7 +102,7 @@ function QueAns() {
                   <MyForm questionId={faq._id} answer={faq.answer} key={index}/>
                 </>}
               </Accordion>
-          ))}
+          )) : <EventLoader />}
       </Box>
       <Modal
         open={open}

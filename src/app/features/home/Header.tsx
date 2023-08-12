@@ -75,7 +75,7 @@ const Header = () => {
   const classes = useStyle();
   return (
     <>
-      <Section>
+      <Section style={{marginTop:"60px"}}>
         <BackgroundImage />
         <Container maxWidth="md" style={{ position: "absolute", zIndex: "2" }}>
           <Box>

@@ -92,7 +92,7 @@ function Register() {
   };
 
   return (
-    <Container style={{ display: "flex", justifyContent: "center" }}>
+    <Container style={{ display: "flex", justifyContent: "center",marginTop:"95px" }}>
       <Box className={clsx(classes.root, "border")}>
         <div className={clsx(classes.centerContent, "mt-5 mb-4")}>
           <img src="./The TS High School.png" width="60%" alt="logo" />

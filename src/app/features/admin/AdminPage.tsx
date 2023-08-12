@@ -1,19 +1,9 @@
-import {
-  Box,
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-  CardActions,
-  CardHeader,
-  Avatar,
-  Switch,
-  FormControlLabel,
-} from "@mui/material";
+import {Box,Grid,Card,CardContent,Typography,CardActions,CardHeader,Avatar,Switch,FormControlLabel,} from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { useStore } from "../../store/store";
 import { getRole } from "../../util/helper";
+import EventLoader from "../../layout/Loader/EventLoader";
 
 const AdminPage = () => {
   const { adminStore } = useStore();
@@ -25,14 +15,13 @@ const AdminPage = () => {
 
   const handleChange = (userId: string) => {
     editUserStatus(userId);
-    // getUserList();
   };
 
   return (
     <>
-      <Box sx={{ flexGrow: 1 }} marginBottom={3}>
+      <Box sx={{ flexGrow: 1 }} marginBottom={3} className="h-70" marginTop='95px'>
         <Grid container spacing={2}>
-          {userList.map((user, idx) => (
+          {userList && userList.length > 0 ? userList.map((user, idx) => (
             <Grid item key={idx} xs={12} sm={6} md={4} lg={3}>
               <Card sx={{ height: "100%" }}>
                 <CardHeader
@@ -90,7 +79,7 @@ const AdminPage = () => {
                 </CardActions>
               </Card>
             </Grid>
-          ))}
+          )) : <EventLoader />}
         </Grid>
       </Box>
     </>

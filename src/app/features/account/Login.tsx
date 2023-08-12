@@ -71,7 +71,7 @@ function LogIn() {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" style={{marginTop:"95px"}}>
       <Box className={clsx(classes.root, "border")}>
         <div className={clsx(classes.centerContent, "mt-5 mb-4")}>
           <img src="./The TS High School.png" width="60%" alt="logo" />

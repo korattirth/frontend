@@ -4,6 +4,7 @@ import { useStore } from "../../store/store";
 import InfiniteScroll from "react-infinite-scroller";
 import Event from "./Event";
 import { observer } from "mobx-react-lite";
+import Loader from "../../layout/Loader/Loader";
 
 const MoreEvents = () => {
   const { eventStore } = useStore();
@@ -24,13 +25,13 @@ const MoreEvents = () => {
     };
 
   return (
-    <>
+    <div>
       {events && (
         <InfiniteScroll
           pageStart={0}
           loadMore={handleNext}
           hasMore={events.totalPages > events.currentPage}
-          loader={<h1 key={0}>Loading...</h1>}
+          loader={<Loader key={0} />}
           initialLoad={false}
         >
           <Grid container spacing={5}>
@@ -40,9 +41,9 @@ const MoreEvents = () => {
               </Grid>
             ))}
           </Grid>
-        </InfiniteScroll>
+        </InfiniteScroll> 
       )}
-    </>
+    </div>
   );
 };
 

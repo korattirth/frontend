@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useStore } from "../../store/store";
 import Event from "./Event";
+import EventLoader from "../../layout/Loader/EventLoader";
 
 const SingleEvent = () => {
   const {
@@ -17,11 +18,12 @@ const SingleEvent = () => {
     return () => clearSelectedEvent();
   }, [getEvent, id, clearSelectedEvent]);
   return (
-    <>
-      <Container sx={{ marginBottom: "20px" }}>
-        {event && <Event event={event} eventId={id} />}
-      </Container>
-    </>
+    <div className="h-70">
+      {!event ? <EventLoader /> :
+        <Container sx={{ marginBottom: "20px"}} >
+          {event && <Event event={event} eventId={id} />}
+        </Container>}
+    </div>
   );
 };
 

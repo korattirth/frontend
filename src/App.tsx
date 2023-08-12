@@ -12,7 +12,6 @@ import PostList from "./app/features/post/PostList";
 import NotFound from "./app/layout/NotFound";
 import { useEffect, useState } from "react";
 import { useStore } from "./app/store/store";
-import LoadingComponents from "./app/layout/LoadingComponents";
 import { observer } from "mobx-react-lite";
 import PrivateRoute from "./app/layout/PrivateRoute";
 import { Roles } from "./app/util/shared";
@@ -32,6 +31,7 @@ import MyCart from "./app/features/account/MyCart";
 import QueAns from "./app/features/contact/QueAns";
 import SuggestedPeople from "./app/features/contact/SuggestedPeople";
 import OurTeam from "./app/features/contact/OurTeam";
+import PageLoader from "./app/layout/Loader/PageLoader";
 
 function App() {
   const { userStore, commonStore } = useStore();
@@ -49,7 +49,7 @@ function App() {
     }
   }, [userStore, commonStore, token, getCurrentUser]);
 
-  if (loading) return <LoadingComponents message="Initialisin App..." />;
+  if (loading) return <PageLoader/>;
   return (
     <>
       <ThemeProvider theme={theme}>

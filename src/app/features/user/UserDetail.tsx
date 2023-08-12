@@ -90,7 +90,7 @@ const UserDetails = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1,marginTop:'95px' }}>
       <Grid container spacing={2} marginBottom={3}>
         <Grid item xs={12} textAlign="center">
           <Typography className={classes.title}>Profile</Typography>
